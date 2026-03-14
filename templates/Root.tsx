@@ -30,9 +30,7 @@ export const videoSchema = z.object({
 
   // 进度条设置 (native 4K, outside scale(2))
   showProgressBar: z.boolean().describe("显示底部进度条"),
-  progressBarHeight: z.number().min(80).max(150).describe("进度条高度"),
-  progressFontSize: z.number().min(28).max(60).describe("进度条文字大小"),
-  progressActiveColor: z.string().describe("进度条激活颜色"),
+  progressColor: z.string().describe("进度条颜色"),
 
   // 音频设置
   bgmVolume: z.number().min(0).max(0.3).step(0.01).describe("BGM 音量"),
@@ -53,11 +51,11 @@ export type VideoProps = z.infer<typeof videoSchema>;
 
 // 【可视化编辑】: 默认值 - Studio 会显示这些作为初始值
 export const defaultVideoProps: VideoProps = {
-  // 颜色 - DeepSeek 蓝色系
-  primaryColor: "#4f6ef7",
+  // 颜色 - Marp Gaia-inspired clean palette
+  primaryColor: "#0288d1",
   backgroundColor: "#ffffff",
-  textColor: "#1a1a1a",
-  accentColor: "#FF6B6B",
+  textColor: "#455a64",
+  accentColor: "#37474f",
 
   // 字体大小 (1080p design space, auto scale(2) to 4K)
   // Reference: PluginComparison hero=72, Superpowers hero=120, section=80
@@ -65,11 +63,9 @@ export const defaultVideoProps: VideoProps = {
   subtitleSize: 40,
   bodySize: 28,
 
-  // 进度条 (native 4K, matches Superpowers reference)
+  // 进度条 (minimal 4px line)
   showProgressBar: true,
-  progressBarHeight: 130,
-  progressFontSize: 38,
-  progressActiveColor: "#4f6ef7",
+  progressColor: "#0288d1",
 
   // 音频
   bgmVolume: 0.05,

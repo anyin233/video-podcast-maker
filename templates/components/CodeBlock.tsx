@@ -16,9 +16,9 @@ export const CodeBlock = ({
   const anim = useEntrance(props.enableAnimations, delay);
   return (
     <div style={{
-      width: "100%", borderRadius: 20, overflow: "hidden",
+      width: "100%", borderRadius: 8, overflow: "hidden",
       opacity: anim.opacity, transform: `translateY(${anim.translateY}px)`,
-      boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+      border: "1px solid rgba(0,0,0,0.08)",
     }}>
       <div style={{
         background: "#2d2d2d", padding: "14px 24px",

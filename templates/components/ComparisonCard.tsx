@@ -15,21 +15,14 @@ export const ComparisonCard = ({
 }) => {
   const v = props.orientation === "vertical";
   const anim = useEntrance(props.enableAnimations, delay);
-  const leftAnim = useEntrance(props.enableAnimations, delay + 5, "snappy");
-  const rightAnim = useEntrance(props.enableAnimations, delay + 10, "snappy");
+  const leftAnim = useEntrance(props.enableAnimations, delay + 5);
+  const rightAnim = useEntrance(props.enableAnimations, delay + 10);
 
-  const cardStyle = (side: typeof left, highlighted: boolean): React.CSSProperties => ({
+  const cardStyle = (_side: typeof left, highlighted: boolean): React.CSSProperties => ({
     flex: v ? undefined : 1, width: v ? "100%" : undefined,
-    background: highlighted
-      ? `linear-gradient(135deg, ${props.primaryColor}0A, ${props.primaryColor}14)`
-      : "linear-gradient(135deg, rgba(255,255,255,0.95), rgba(0,0,0,0.02))",
-    border: highlighted
-      ? `2px solid ${props.primaryColor}30`
-      : "1px solid rgba(0,0,0,0.08)",
-    borderRadius: 24, padding: v ? "36px 40px" : "40px 44px",
-    boxShadow: highlighted
-      ? `0 4px 16px ${props.primaryColor}15, 0 8px 32px rgba(0,0,0,0.06)`
-      : "0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)",
+    background: highlighted ? `${props.primaryColor}08` : "transparent",
+    border: "1px solid rgba(0,0,0,0.08)",
+    borderRadius: 8, padding: v ? "36px 40px" : "40px 44px",
   });
 
   return (
@@ -43,7 +36,6 @@ export const ComparisonCard = ({
             <div style={{
               fontSize: v ? 40 : 48, fontWeight: 800, color: props.primaryColor, opacity: 0.6,
               flexShrink: 0,
-              textShadow: `0 2px 8px ${props.primaryColor}20`,
             }}>
               VS
             </div>

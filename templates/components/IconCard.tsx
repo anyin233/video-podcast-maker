@@ -18,22 +18,18 @@ export const IconCard = ({
 }) => {
   const v = props.orientation === "vertical";
   const c = color || props.primaryColor;
-  const a = useEntrance(props.enableAnimations, delay, "bouncy");
+  const a = useEntrance(props.enableAnimations, delay);
   return (
     <div style={{
       display: "flex", alignItems: "center", gap: v ? 28 : 32, width: "100%",
       padding: v ? "32px 36px" : "36px 44px",
-      background: `linear-gradient(135deg, ${c}08, ${c}14)`,
-      borderRadius: 24,
-      border: `1px solid ${c}18`,
-      boxShadow: `0 4px 16px ${c}10, 0 8px 24px rgba(0,0,0,0.04)`,
-      opacity: a.opacity, transform: `translateY(${a.translateY}px) scale(${a.scale})`,
+      background: "transparent",
+      borderRadius: 8,
+      border: "1px solid rgba(0,0,0,0.08)",
+      opacity: a.opacity, transform: `translateY(${a.translateY}px)`,
     }}>
       <div style={{
         fontSize: v ? 56 : 64, flexShrink: 0,
-        width: v ? 80 : 88, height: v ? 80 : 88,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        background: `${c}12`, borderRadius: 20,
       }}>
         {icon}
       </div>

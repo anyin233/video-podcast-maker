@@ -18,16 +18,15 @@ export const FlowChart = ({
       flexDirection: v ? "column" : "row", gap: 0,
     }}>
       {steps.map((step, i) => {
-        const a = useEntrance(props.enableAnimations, delay + i * 8, "snappy");
+        const a = useEntrance(props.enableAnimations, delay + i * 8);
         return (
           <React.Fragment key={i}>
             <div style={{
               flex: 1, textAlign: "center",
               padding: v ? "28px 32px" : "32px 20px",
-              background: `linear-gradient(135deg, ${props.primaryColor}08, ${props.primaryColor}14)`,
-              borderRadius: 20,
-              boxShadow: `0 2px 8px rgba(0,0,0,0.04), 0 4px 16px ${props.primaryColor}08`,
-              border: `1px solid ${props.primaryColor}15`,
+              background: "transparent",
+              borderRadius: 8,
+              border: "1px solid rgba(0,0,0,0.08)",
               opacity: a.opacity, transform: `translateY(${a.translateY}px)`,
               minWidth: 0,
             }}>

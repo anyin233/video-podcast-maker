@@ -9,4 +9,4 @@ export { DataBar } from "./DataBar";
 export { StatCounter } from "./StatCounter";
 export { FlowChart } from "./FlowChart";
 export { IconCard } from "./IconCard";
-export { ChapterProgressBar } from "./ChapterProgressBar";
+export { ProgressBar, ChapterProgressBar } from "./ChapterProgressBar";

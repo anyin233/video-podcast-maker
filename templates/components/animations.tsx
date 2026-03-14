@@ -4,33 +4,23 @@ import { slide } from "@remotion/transitions/slide";
 import { wipe } from "@remotion/transitions/wipe";
 import { none } from "@remotion/transitions/none";
 
-// Spring presets for different animation feels
-const SPRING_PRESETS = {
-  gentle: { damping: 200, mass: 1 },
-  snappy: { damping: 100, mass: 0.5 },
-  bouncy: { damping: 80, mass: 0.8 },
-} as const;
-
-type SpringPreset = keyof typeof SPRING_PRESETS;
-
-// Spring-based entrance animation with stagger and preset support
+// Subtle entrance animation — Marp-like: no scale, gentle lift, fade-in only
 export const useEntrance = (
   enabled: boolean,
   delay = 0,
-  preset: SpringPreset = "gentle",
+  _preset?: string,
 ) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
   if (!enabled) return { opacity: 1, translateY: 0, scale: 1, rotate: 0 };
 
-  const config = SPRING_PRESETS[preset];
-  const progress = spring({ frame, fps, delay, config, durationInFrames: 30 });
+  const progress = spring({ frame, fps, delay, config: { damping: 200, mass: 1 }, durationInFrames: 30 });
 
   return {
     opacity: interpolate(progress, [0, 1], [0, 1]),
-    translateY: interpolate(progress, [0, 1], [40, 0]),
-    scale: interpolate(progress, [0, 1], [0.95, 1]),
+    translateY: interpolate(progress, [0, 1], [12, 0]),
+    scale: 1,
     rotate: 0,
   };
 };

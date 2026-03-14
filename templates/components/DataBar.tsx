@@ -15,8 +15,6 @@ export const DataBar = ({
   return (
     <div style={{
       display: "flex", flexDirection: "column", gap: 24, width: "100%",
-      background: "rgba(0,0,0,0.02)", borderRadius: 24, padding: "32px 36px",
-      boxShadow: "0 2px 8px rgba(0,0,0,0.03), 0 4px 16px rgba(0,0,0,0.04)",
     }}>
       {items.map((item, i) => {
         const pct = (item.value / max) * 100;
@@ -38,8 +36,7 @@ export const DataBar = ({
             }}>
               <div style={{
                 width: `${fillPct}%`, height: "100%", borderRadius: 20,
-                background: `linear-gradient(90deg, ${props.primaryColor}, ${props.accentColor})`,
-                boxShadow: `0 2px 8px ${props.primaryColor}30`,
+                background: props.primaryColor,
                 transition: "none",
               }} />
             </div>
