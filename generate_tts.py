@@ -734,35 +734,193 @@ print(f"  临时文件保留: {len(part_files)} 个 part_*.wav (手动清理: St
 # 生成 SRT 字幕
 print("\n生成字幕...")
 def format_time(seconds):
+    """Format seconds to SRT timestamp: HH:MM:SS,mmm"""
     h, m = int(seconds // 3600), int((seconds % 3600) // 60)
     s, ms = int(seconds % 60), int((seconds % 1) * 1000)
     return f"{h:02d}:{m:02d}:{s:02d},{ms:03d}"
 
-srt_lines = []
-subtitle_idx = 1
-current_text = ""
-start_time = end_time = 0
+# ── Sentence-first subtitle splitting ──
+# Phase 1: Group word boundaries into sentences by strong punctuation (。！？)
+# Phase 2: For long unpunctuated passages, apply semantic splitting
+# Phase 3: For sentences exceeding max length, split at weak punctuation or semantic breaks
+
+MAX_SUB_CHARS = 35       # Max chars per subtitle line
+SEMANTIC_TARGET = 18     # Target length for semantic splitting of unpunctuated text
+STRONG_PUNCT = set("。！？")
+WEAK_PUNCT = set("，、；：")
+
+# Chinese conjunctions and transition words — natural clause boundaries
+CONJUNCTIONS = ["但是", "然而", "而且", "并且", "因为", "所以", "如果", "虽然",
+                "不过", "然后", "接着", "最后", "首先", "其次", "同时", "另外",
+                "或者", "于是", "因此", "可是", "而是", "也就是说", "比如",
+                "不仅", "只是", "其实", "当然", "总之", "毕竟"]
+# Clause-ending particles — often mark natural pauses
+CLAUSE_PARTICLES = set("了的吧呢啊吗呀嘛啦么")
+
+
+def _find_semantic_break(words, start, end):
+    """Find best semantic break point in a word range without punctuation.
+
+    Priority: conjunction start > clause particle > midpoint.
+    Returns the index AFTER which to break, or None if no good break found.
+    """
+    text_so_far = ""
+    best_break = None
+    best_score = -1
+
+    for idx in range(start, end):
+        text_so_far += words[idx]["text"]
+        if len(text_so_far) < 8:
+            continue  # too short, keep accumulating
+
+        w = words[idx]["text"]
+        # Check if next word starts a conjunction (strong signal)
+        if idx + 1 < end:
+            upcoming = "".join(words[j]["text"] for j in range(idx + 1, min(idx + 4, end)))
+            for conj in CONJUNCTIONS:
+                if upcoming.startswith(conj):
+                    score = 100 + abs(len(text_so_far) - SEMANTIC_TARGET) * -1
+                    if score > best_score:
+                        best_score = score
+                        best_break = idx
+                    break
+
+        # Clause particle at end of current word (moderate signal)
+        if w and w[-1] in CLAUSE_PARTICLES and len(text_so_far) >= 10:
+            score = 50 + abs(len(text_so_far) - SEMANTIC_TARGET) * -1
+            if score > best_score:
+                best_score = score
+                best_break = idx
+
+    # Fallback: break at ~midpoint if passage is very long and no semantic signal found
+    total_len = sum(len(words[i]["text"]) for i in range(start, end))
+    if best_break is None and total_len > MAX_SUB_CHARS:
+        char_count = 0
+        for idx in range(start, end):
+            char_count += len(words[idx]["text"])
+            if char_count >= total_len // 2:
+                best_break = idx
+                break
+
+    return best_break
+
+
+def _emit_subtitle(words, start, end):
+    """Create one subtitle entry from a word range."""
+    text = "".join(words[i]["text"] for i in range(start, end))
+    clean = re.sub(r'^[，。！？、：；""''…—\s]+|[，。！？、：；""''…—\s]+$', '', text.strip())
+    if not clean:
+        return None
+    s_time = words[start]["offset"]
+    e_time = words[end - 1]["offset"] + words[end - 1]["duration"]
+    return (s_time, e_time, clean)
+
+
+def _split_long_segment(words, start, end):
+    """Split a segment that exceeds MAX_SUB_CHARS into multiple subtitles.
+
+    First tries weak punctuation, then semantic breaks, then hard char split.
+    """
+    results = []
+    seg_start = start
+
+    while seg_start < end:
+        seg_text = ""
+        seg_end = seg_start
+
+        # Scan forward to find a good break within MAX_SUB_CHARS
+        best_weak_break = None
+        for idx in range(seg_start, end):
+            seg_text += words[idx]["text"]
+            seg_end = idx + 1
+
+            # Track weak punctuation positions
+            if words[idx]["text"] in WEAK_PUNCT and len(seg_text) >= 10:
+                best_weak_break = idx + 1
+
+            if len(seg_text) >= MAX_SUB_CHARS:
+                break
+
+        if seg_end >= end:
+            # Remaining fits or is the last piece
+            sub = _emit_subtitle(words, seg_start, end)
+            if sub:
+                results.append(sub)
+            break
+
+        # Try breaking at last weak punctuation within range
+        if best_weak_break and best_weak_break > seg_start:
+            sub = _emit_subtitle(words, seg_start, best_weak_break)
+            if sub:
+                results.append(sub)
+            seg_start = best_weak_break
+            continue
+
+        # Try semantic break
+        sem_break = _find_semantic_break(words, seg_start, seg_end)
+        if sem_break and sem_break + 1 > seg_start:
+            sub = _emit_subtitle(words, seg_start, sem_break + 1)
+            if sub:
+                results.append(sub)
+            seg_start = sem_break + 1
+            continue
+
+        # Hard break at current position
+        sub = _emit_subtitle(words, seg_start, seg_end)
+        if sub:
+            results.append(sub)
+        seg_start = seg_end
+
+    return results
+
+
+# Phase 1: Group words into sentences by strong punctuation
+sentences = []  # list of (start_idx, end_idx) in word_boundaries
+sent_start = 0
 
 for i, wb in enumerate(word_boundaries):
-    if not current_text:
-        start_time = wb["offset"]
-    current_text += wb["text"]
-    end_time = wb["offset"] + wb["duration"]
+    if wb["text"] in STRONG_PUNCT or i == len(word_boundaries) - 1:
+        sent_end = i + 1
+        if sent_end > sent_start:
+            sentences.append((sent_start, sent_end))
+        sent_start = sent_end
 
-    is_strong = wb["text"] in ["。", "！", "？"]
-    is_weak = wb["text"] in ["；", ",", "，"]
-    is_last = i == len(word_boundaries) - 1
-    text_len = len(current_text)
+# Phase 2: Check for very long sentences (no strong punctuation) — apply semantic splitting
+expanded_sentences = []
+for (s, e) in sentences:
+    seg_len = sum(len(word_boundaries[i]["text"]) for i in range(s, e))
+    has_strong = any(word_boundaries[i]["text"] in STRONG_PUNCT for i in range(s, e))
 
-    should_break = is_last or (is_strong and text_len > 15) or (is_weak and text_len > 25) or text_len > 35
+    if seg_len > MAX_SUB_CHARS * 2 and not has_strong:
+        # Long unpunctuated passage — semantic split into sub-sentences
+        sub_start = s
+        while sub_start < e:
+            sem_break = _find_semantic_break(word_boundaries, sub_start, e)
+            if sem_break and sem_break + 1 > sub_start and sem_break + 1 < e:
+                expanded_sentences.append((sub_start, sem_break + 1))
+                sub_start = sem_break + 1
+            else:
+                expanded_sentences.append((sub_start, e))
+                break
+    else:
+        expanded_sentences.append((s, e))
 
-    if should_break:
-        # 清理首尾标点
-        clean_subtitle = re.sub(r'^[，。！？、：；""''…—\s]+|[，。！？、：；""''…—\s]+$', '', current_text.strip())
-        if clean_subtitle:
-            srt_lines.append(f"{subtitle_idx}\n{format_time(start_time)} --> {format_time(end_time)}\n{clean_subtitle}\n\n")
-            subtitle_idx += 1
-        current_text = ""
+# Phase 3: Generate subtitle entries — one per sentence, split if too long
+srt_entries = []
+for (s, e) in expanded_sentences:
+    seg_len = sum(len(word_boundaries[i]["text"]) for i in range(s, e))
+
+    if seg_len <= MAX_SUB_CHARS:
+        sub = _emit_subtitle(word_boundaries, s, e)
+        if sub:
+            srt_entries.append(sub)
+    else:
+        srt_entries.extend(_split_long_segment(word_boundaries, s, e))
+
+# Write SRT
+srt_lines = []
+for idx, (s_time, e_time, text) in enumerate(srt_entries, 1):
+    srt_lines.append(f"{idx}\n{format_time(s_time)} --> {format_time(e_time)}\n{text}\n\n")
 
 output_srt = os.path.join(args.output_dir, "podcast_audio.srt")
 with open(output_srt, "w", encoding="utf-8") as f:
