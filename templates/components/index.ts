@@ -10,3 +10,5 @@ export { StatCounter } from "./StatCounter";
 export { FlowChart } from "./FlowChart";
 export { IconCard } from "./IconCard";
 export { ProgressBar, ChapterProgressBar } from "./ChapterProgressBar";
+export { Icon } from "./Icon";
+export { ICON_MAP, isEmoji } from "./iconMap";
