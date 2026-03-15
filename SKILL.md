@@ -190,14 +190,40 @@ Automated pipeline to create professional **Bilibili (B站) 横屏知识视频**
 
 ## Design Philosophy
 
-Templates follow a **Marp-like clean slide aesthetic** — typography-first, solid colors, generous whitespace.
+Templates follow a **Marp-like clean slide aesthetic** — typography-first, solid colors, generous whitespace, **every section must include at least one image**.
+- **Image-required**: every section uses one of the 12 section templates, each requiring ≥1 image (AI-generated or real)
 - **Typography-first hierarchy**: size, weight, and color differentiation drive visual structure
-- **Solid backgrounds only**: pure white or flat colors — no gradients
+- **Solid backgrounds only**: pure white or flat colors — no gradients (exception: functional overlays on images for readability)
+- **Content-rich but readable**: high information density while maintaining clear hierarchy
 - **Generous whitespace**: let content breathe with ample spacing between elements
 - **Minimal borders**: `1px solid rgba(0,0,0,0.08)` when separation is needed, otherwise none
 - **No shadows by default**: exception: CodeBlock keeps its dark terminal background
 - **Color palette**: match the subject (tech → cool blues/grays, food → warm tones, finance → dark/gold)
-- **Section layouts**: create new component arrangements, don't repeat the same layout for every section
+- **Section layouts**: select from 12 section templates; adjacent sections must use different templates
+
+### Section Templates (12 layouts)
+
+每个章节 MUST 从以下 12 个模板中选择。模板定义在 `templates/section-templates/templates.tsx`。
+
+| ID | Name | Layout | Use Case |
+|----|------|--------|----------|
+| T01 | HeroSplit | 60/40 左文右图 | 开场、主题引入 |
+| T02 | PhotoOverlay | 全屏背景图+文字叠层 | 氛围渲染、戏剧性开场 |
+| T03 | ImageGrid | 2×2 横向图文卡片 | 多特性展示、案例集锦 |
+| T04 | QuotePortrait | 引用+圆形头像 | 名言、专家观点 |
+| T05 | SplitDataViz | 左数据条+右图片 | 数据对比+视觉支撑 |
+| T06 | TimelineMedia | 带缩略图的时间线+侧图 | 发展历程、里程碑 |
+| T07 | MagazineSpread | 大图左+要点列表右 | 深度内容、杂志风 |
+| T08 | StepByStep | 大圆图+编号步骤+指标 | 流程、方法论 |
+| T09 | BigNumber | 暗色背景图+巨型数字 | 关键统计、冲击力数据 |
+| T10 | DualCompare | 双图双列+统计+结论 | A vs B 对比 |
+| T11 | FeaturedImage | 单张大图居中展示 | 仅用于图片展示场景 |
+| T12 | BannerCards | 顶部横幅图+详细卡片 | 数据仪表盘、市场概览 |
+
+**模板选择规则：**
+- 相邻章节不得使用相同模板
+- T11 仅用于需要展示产品截图、示意图、照片的场景，不用于文字内容章节
+- 每个模板都需要至少一张图片（通过 `media_manifest.json` 中的素材或 AI 生成）
 
 **Anti-patterns (DO NOT use):**
 

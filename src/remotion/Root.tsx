@@ -13,6 +13,10 @@ import { z } from "zod";
 import { Video } from "./Video";
 // import { Thumbnail } from "./Thumbnail";
 import timing from "../../public/timing.json";
+import {
+  Demo_T01, Demo_T02, Demo_T03, Demo_T04, Demo_T05, Demo_T06,
+  Demo_T07, Demo_T08, Demo_T09, Demo_T10, Demo_T11, Demo_T12,
+} from "./section-templates";
 
 // 【可视化编辑】: Zod Schema 定义可编辑属性
 // Remotion Studio 会自动根据类型生成对应的编辑 UI
@@ -52,10 +56,10 @@ export type VideoProps = z.infer<typeof videoSchema>;
 // 【可视化编辑】: 默认值 - Studio 会显示这些作为初始值
 export const defaultVideoProps: VideoProps = {
   // 颜色 - Warm peach/orange for 哈基米 cat theme
-  primaryColor: "#e67e22",
-  backgroundColor: "#ffffff",
-  textColor: "#5d4037",
-  accentColor: "#795548",
+  primaryColor: "#E8875B",
+  backgroundColor: "#FFF5EE",
+  textColor: "#2D2D2D",
+  accentColor: "#F4A261",
 
   // 字体大小 (1080p design space, auto scale(2) to 4K)
   // Reference: PluginComparison hero=72, Superpowers hero=120, section=80
@@ -65,7 +69,7 @@ export const defaultVideoProps: VideoProps = {
 
   // 进度条 (minimal 4px line)
   showProgressBar: true,
-  progressColor: "#e67e22",
+  progressColor: "#E8875B",
 
   // 音频
   bgmVolume: 0.05,
@@ -119,6 +123,21 @@ export const RemotionRoot = () => {
       />
 
       {/* Thumbnails disabled - add Thumbnail.tsx first */}
+
+      {/* ── Section Template Showcase ── */}
+      {/* Render: npx remotion still src/remotion/index.ts T01_HeroSplit out.png --frame=60 */}
+      <Composition id="T01-HeroSplit" component={Demo_T01} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T02-PhotoOverlay" component={Demo_T02} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T03-ImageGrid" component={Demo_T03} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T04-QuotePortrait" component={Demo_T04} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T05-SplitDataViz" component={Demo_T05} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T06-TimelineMedia" component={Demo_T06} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T07-MagazineSpread" component={Demo_T07} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T08-StepByStep" component={Demo_T08} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T09-BigNumber" component={Demo_T09} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T10-DualCompare" component={Demo_T10} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T11-FeaturedImage" component={Demo_T11} durationInFrames={90} fps={30} width={3840} height={2160} />
+      <Composition id="T12-BannerCards" component={Demo_T12} durationInFrames={90} fps={30} width={3840} height={2160} />
     </>
   );
 };
