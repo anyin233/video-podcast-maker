@@ -1,462 +1,308 @@
 /**
- * 哈基米的发展 — Remotion Video Component
- * Marp-like clean aesthetic with warm peach/orange palette
+ * 叮咚鸡 — Remotion Video Component
+ * Meme culture documentary: the rise of "Ding Dong Chicken" from obscure audio clip to global phenomenon.
+ * Palette: yellow #FFD700 / orange #FF8C00 / white #FFFFFF / accent #FF6B35
  */
 
 import React from "react";
-import { Audio, staticFile, AbsoluteFill, Img } from "remotion";
+import { Audio, staticFile, AbsoluteFill } from "remotion";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import timing from "../../public/timing.json";
 import type { VideoProps } from "./Root";
 
 import {
+  T01_HeroSplit,
+  T02_PhotoOverlay,
+  T03_ImageGrid,
+  T05_SplitDataViz,
+  T06_TimelineMedia,
+  T07_MagazineSpread,
+  T08_StepByStep,
+  T09_BigNumber,
+} from "./section-templates";
+
+import {
   Scale4K,
-  FullBleedLayout,
-  PaddedLayout,
-  useEntrance,
-  getPresentation,
   ProgressBar,
-  Timeline,
-  FlowChart,
-  StatCounter,
+  getPresentation,
 } from "./components";
 
+const FONT = "'PingFang SC', 'Noto Sans SC', -apple-system, sans-serif";
+
+/** Silent sections (e.g. outro with is_silent: true) receive 150 extra frames. */
+const SILENT_EXTRA_FRAMES = 150;
+
+/**
+ * Renders the correct section template based on section.name from timing.json.
+ * Each case maps to one of the 12 predefined templates (T01-T12) with
+ * content specific to the 叮咚鸡 video.
+ */
 const SectionComponent = ({
   section,
   props,
 }: {
-  section: typeof timing.sections[0];
+  section: (typeof timing.sections)[0];
   props: VideoProps;
 }) => {
-  const { opacity, translateY, scale } = useEntrance(props.enableAnimations);
-  const animStyle = { opacity, transform: `translateY(${translateY}px) scale(${scale})` };
-  const v = props.orientation === "vertical";
-  const sectionPadding = v ? "120px 60px" : "80px 100px";
-
   switch (section.name) {
+    // ── hero: Full-bleed image with text overlay (T02) ──
     case "hero":
       return (
-        <FullBleedLayout bg={props.backgroundColor}>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              padding: v ? "0 60px" : "0 120px",
-              ...animStyle,
-            }}
-          >
-            <div style={{ fontSize: 120, marginBottom: 24 }}>🐱</div>
-            <h1
-              style={{
-                fontSize: v ? 96 : 88,
-                fontWeight: 800,
-                color: props.primaryColor,
-                lineHeight: 1.2,
-              }}
-            >
-              哈基米的发展
-            </h1>
-            <div style={{
-              width: 80, height: 2, marginTop: 24,
-              background: props.primaryColor, opacity: 0.3,
-            }} />
-            <p
-              style={{
-                fontSize: v ? 40 : 36,
-                color: props.textColor,
-                marginTop: 20,
-                opacity: 0.6,
-                fontWeight: 500,
-              }}
-            >
-              从蜂蜜到猫咪的互联网传奇
-            </p>
-          </div>
-        </FullBleedLayout>
+        <T02_PhotoOverlay
+          title="你一定听过这只鸡"
+          subtitle="叮咚鸡 · 大狗叫 · 袋鼠鸡 · 见缸马"
+          image="media/dingdong-chicken/hero_chicken.png"
+          overlayColor="rgba(0,0,0,0.50)"
+        />
       );
 
+    // ── origin: Vertical timeline with side image (T06) ──
     case "origin":
       return (
-        <PaddedLayout bg="#fdf6f0" orientation={props.orientation}>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              padding: sectionPadding,
-              display: "flex",
-              flexDirection: "column",
-              ...animStyle,
-            }}
-          >
-            <h2
-              style={{
-                fontSize: v ? 72 : 80,
-                fontWeight: 700,
-                color: props.primaryColor,
-              }}
-            >
-              起源
-            </h2>
-            <p style={{ fontSize: v ? 34 : 30, color: props.textColor, opacity: 0.5, marginTop: 8, marginBottom: v ? 48 : 40 }}>
-              一切从一首蜂蜜之歌开始
-            </p>
-            <div style={{ flex: 1, display: "flex", alignItems: "center" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: 32, width: "100%" }}>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
-                  <span style={{ fontSize: 36, flexShrink: 0 }}>🍯</span>
-                  <div>
-                    <span style={{ fontSize: 34, fontWeight: 700, color: props.primaryColor }}>はちみつ</span>
-                    <span style={{ fontSize: 28, color: props.textColor, marginLeft: 12, opacity: 0.7 }}>日语"蜂蜜"的发音 → "哈基米"</span>
-                  </div>
-                </div>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
-                  <span style={{ fontSize: 36, flexShrink: 0 }}>🐴</span>
-                  <div>
-                    <span style={{ fontSize: 34, fontWeight: 700, color: props.primaryColor }}>赛马娘 S2E12</span>
-                    <span style={{ fontSize: 28, color: props.textColor, marginLeft: 12, opacity: 0.7 }}>东海帝王买蜂蜜水时哼唱</span>
-                  </div>
-                </div>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
-                  <span style={{ fontSize: 36, flexShrink: 0 }}>🎵</span>
-                  <div>
-                    <span style={{ fontSize: 34, fontWeight: 700, color: props.primaryColor }}>魔性旋律</span>
-                    <span style={{ fontSize: 28, color: props.textColor, marginLeft: 12, opacity: 0.7 }}>动画里很小的片段，却改变了一切</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </PaddedLayout>
+        <T06_TimelineMedia
+          title="一切从一个大喇叭开始"
+          events={[
+            {
+              image: "media/dingdong-chicken/origin_timeline_1.png",
+              label: "2022.3 · 社区大喇叭",
+              description: "印尼社区魔性广播，洗脑旋律初现",
+            },
+            {
+              image: "media/dingdong-chicken/origin_timeline_2.png",
+              label: "2022.3 · 空耳爆红",
+              description: "「叮咚鸡叮咚鸡」空耳席卷中文互联网",
+            },
+            {
+              image: "media/dingdong-chicken/origin_family.png",
+              label: "2022.8 · 神曲诞生",
+              description: "多版本混剪涌现，叮咚鸡家族成型",
+            },
+          ]}
+          sideImage="media/dingdong-chicken/origin_megaphone.png"
+          primaryColor={props.primaryColor}
+          backgroundColor="#FFF3E0"
+          textColor={props.textColor}
+          accentColor={props.accentColor}
+        />
       );
 
-    case "spread":
+    // ── first_wave: 2x2 image grid showing platform spread (T03) ──
+    case "first_wave":
       return (
-        <PaddedLayout bg={props.backgroundColor} orientation={props.orientation}>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              padding: sectionPadding,
-              display: "flex",
-              flexDirection: "column",
-              ...animStyle,
-            }}
-          >
-            <h2
-              style={{
-                fontSize: v ? 72 : 80,
-                fontWeight: 700,
-                color: props.primaryColor,
-              }}
-            >
-              B站爆发
-            </h2>
-            <p style={{ fontSize: v ? 34 : 30, color: props.textColor, opacity: 0.5, marginTop: 8, marginBottom: v ? 48 : 40 }}>
-              京桥刹那的混剪改变了一切
-            </p>
-            <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <FlowChart
-                props={props}
-                steps={[
-                  { icon: "🎬", label: "京桥刹那", description: "混剪东海帝王 + CLANNAD" },
-                  { icon: "🔥", label: "B站走红", description: "鬼畜、翻唱、MAD 二创" },
-                  { icon: "📢", label: "全站刷屏", description: "「哈基米」三字无处不在" },
-                ]}
-                delay={5}
-              />
-            </div>
-          </div>
-        </PaddedLayout>
+        <T03_ImageGrid
+          title="听不懂但是会唱了"
+          items={[
+            {
+              image: "media/dingdong-chicken/first_wave_weibo.png",
+              title: "微博热搜",
+              description: "话题阅读量破千万，全民跟唱",
+            },
+            {
+              image: "media/dingdong-chicken/first_wave_douyin.png",
+              title: "抖音爆火",
+              description: "500万+播放，BGM席卷短视频",
+            },
+            {
+              image: "media/dingdong-chicken/first_wave_bilibili.png",
+              title: "B站鬼畜",
+              description: "二创井喷，鬼畜区狂欢",
+            },
+            {
+              image: "media/dingdong-chicken/first_wave_music.png",
+              title: "音乐平台上架",
+              description: "QQ音乐/网易云多平台正式发行",
+            },
+          ]}
+          primaryColor={props.primaryColor}
+          backgroundColor="#FFFFFF"
+          textColor={props.textColor}
+        />
       );
 
-    case "cat_era":
+    // ── explosion: Magazine spread — large image left, bullets right (T07) ──
+    case "explosion":
       return (
-        <PaddedLayout bg="#fdf6f0" orientation={props.orientation}>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              padding: sectionPadding,
-              display: "flex",
-              flexDirection: "column",
-              ...animStyle,
-            }}
-          >
-            <h2
-              style={{
-                fontSize: v ? 72 : 80,
-                fontWeight: 700,
-                color: props.primaryColor,
-              }}
-            >
-              猫咪时代
-            </h2>
-            <p style={{ fontSize: v ? 34 : 30, color: props.textColor, opacity: 0.5, marginTop: 8, marginBottom: v ? 48 : 40 }}>
-              2023年4月 · 抖音萌宠博主的意外发现
-            </p>
-            <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Timeline
-                props={props}
-                items={[
-                  { label: "配音猫咪视频", description: "抖音萌宠博主将哈基米调配在猫咪视频中" },
-                  { label: "「米」≈「喵」", description: "网友将「哈基米」直接等同于猫咪的代名词" },
-                  { label: "全网通用", description: "看到可爱的猫，评论区必刷「哈基米」" },
-                  { label: "含义扩大", description: "一切可爱的小动物、甚至可爱的人都是「哈基米」" },
-                ]}
-                delay={5}
-              />
-            </div>
-          </div>
-        </PaddedLayout>
+        <T07_MagazineSpread
+          title="叮咚鸡宇宙大爆炸"
+          bullets={[
+            "鬼畜混剪 — 加速、变调、混音，把一首歌玩出一百种花样",
+            "AI角色化 — 拟人化动画角色，叮咚鸡有了自己的形象",
+            "DJ串烧 — ×《越打越年轻》等经典，跨界联动停不下来",
+            "正式发行 — QQ音乐/Apple Music/Spotify全平台上架",
+          ]}
+          image="media/dingdong-chicken/explosion_remix.png"
+          primaryColor="#FFFFFF"
+          backgroundColor="#FF8C00"
+          textColor="#FFFFFF"
+          accentColor="#FFD700"
+        />
       );
 
-    case "culture":
+    // ── controversy: Data bars left + image right (T05) ──
+    case "controversy":
       return (
-        <PaddedLayout bg={props.backgroundColor} orientation={props.orientation}>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              padding: sectionPadding,
-              display: "flex",
-              flexDirection: "column",
-              ...animStyle,
-            }}
-          >
-            <h2
-              style={{
-                fontSize: v ? 72 : 80,
-                fontWeight: 700,
-                color: props.primaryColor,
-              }}
-            >
-              文化影响
-            </h2>
-            <p style={{ fontSize: v ? 34 : 30, color: props.textColor, opacity: 0.5, marginTop: 8, marginBottom: v ? 48 : 36 }}>
-              三次语义解构 · 跨平台传播
-            </p>
-            <div style={{ flex: 1, display: "flex", flexDirection: v ? "column" : "row", gap: v ? 32 : 48, alignItems: "center" }}>
-              <div style={{ flex: 1 }}>
-                <StatCounter
-                  props={props}
-                  items={[
-                    { value: 3, suffix: "次", label: "语义解构", icon: "🔄" },
-                    { value: 10, suffix: "大", label: "年度热梗", icon: "🏆" },
-                  ]}
-                  delay={5}
-                />
-              </div>
-              <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 24 }}>
-                <div style={{ fontSize: 28, color: props.textColor, lineHeight: 1.8 }}>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
-                    <span style={{ fontWeight: 700, color: props.primaryColor }}>①</span>
-                    <span>动画蜂蜜之歌</span>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
-                    <span style={{ fontWeight: 700, color: props.primaryColor }}>②</span>
-                    <span>萌宠代名词</span>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginBottom: 16 }}>
-                    <span style={{ fontWeight: 700, color: props.primaryColor }}>③</span>
-                    <span>纯粹的网络文化符号</span>
-                  </div>
-                </div>
-                <div style={{ fontSize: 24, color: props.textColor, opacity: 0.5 }}>
-                  B站 → 抖音 → 微博 → 小红书 → 全网
-                </div>
-              </div>
-            </div>
-          </div>
-        </PaddedLayout>
+        <T05_SplitDataViz
+          title="你以为限流了我就完了？"
+          bars={[
+            { label: "平台限流", value: 85, maxValue: 100 },
+            { label: "版权纠纷", value: 70, maxValue: 100 },
+            { label: "安全争议", value: 60, maxValue: 100 },
+            { label: "AI伦理", value: 50, maxValue: 100 },
+          ]}
+          image="media/dingdong-chicken/controversy_car.png"
+          primaryColor={props.primaryColor}
+          backgroundColor="#F5F5F5"
+          textColor={props.textColor}
+          accentColor={props.accentColor}
+        />
       );
 
+    // ── evolution: Three numbered steps with circular images (T08) ──
+    case "evolution":
+      return (
+        <T08_StepByStep
+          title="打不死的小强…不，小鸡"
+          steps={[
+            {
+              image: "media/dingdong-chicken/evolution_gaming.png",
+              label: "游戏化",
+              description: "节奏游戏、小程序，叮咚鸡变身互动玩法",
+              metric: "7.8亿",
+              metricLabel: "播放量",
+            },
+            {
+              image: "media/dingdong-chicken/evolution_global.png",
+              label: "国际化",
+              description: "走出国门，硬控老外，全球传播",
+            },
+            {
+              image: "media/dingdong-chicken/evolution_scholar.png",
+              label: "哲学化",
+              description: "哈耶克名言加持，从玩梗到文化解读",
+            },
+          ]}
+          primaryColor={props.primaryColor}
+          backgroundColor="#FFF8E1"
+          textColor={props.textColor}
+          accentColor={props.accentColor}
+        />
+      );
+
+    // ── meme_status: Giant stat over muted background (T09) ──
+    case "meme_status":
+      return (
+        <T09_BigNumber
+          number="7.8亿"
+          label="抖音累计播放量"
+          description="高适应性迷因的典型案例"
+          image="media/dingdong-chicken/meme_status_globe.png"
+        />
+      );
+
+    // ── summary: 60/40 hero split (T01) ──
     case "summary":
       return (
-        <FullBleedLayout bg={props.backgroundColor}>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: sectionPadding,
-              ...animStyle,
-            }}
-          >
-            <div style={{
-              width: 60, height: 1, background: props.primaryColor, opacity: 0.2, marginBottom: 36,
-            }} />
-            <h2
-              style={{
-                fontSize: v ? 60 : 52,
-                fontWeight: 700,
-                color: props.primaryColor,
-                marginBottom: 28,
-                textAlign: "center",
-              }}
-            >
-              总结
-            </h2>
-            <p
-              style={{
-                fontSize: v ? 36 : 30,
-                color: props.textColor,
-                lineHeight: 1.6,
-                textAlign: "center",
-                maxWidth: 800,
-              }}
-            >
-              一个梗能走多远，不取决于它本身的含义，
-              <br />
-              而取决于它被赋予了什么样的新含义。
-            </p>
-          </div>
-        </FullBleedLayout>
+        <T01_HeroSplit
+          title="为什么一只鸡能打败所有人"
+          subtitle="空耳魔力 · 低门槛二创 · 多次翻红 · 情感记忆"
+          image="media/dingdong-chicken/summary_crown.png"
+          primaryColor={props.primaryColor}
+          backgroundColor="#FFD700"
+          textColor={props.textColor}
+          accentColor={props.accentColor}
+        />
       );
 
+    // ── outro: Call-to-action hero split (T01) ──
     case "outro":
       return (
-        <FullBleedLayout bg={props.backgroundColor}>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              ...animStyle,
-            }}
-          >
-            <h2
-              style={{
-                fontSize: v ? 72 : 80,
-                fontWeight: 700,
-                color: props.textColor,
-                marginBottom: v ? 48 : 36,
-              }}
-            >
-              感谢观看
-            </h2>
-            <p
-              style={{
-                fontSize: v ? 36 : 32,
-                color: props.textColor,
-                opacity: 0.5,
-                fontWeight: 500,
-              }}
-            >
-              点赞 / 收藏 / 关注
-            </p>
-            <p
-              style={{
-                fontSize: v ? 44 : 36,
-                color: props.primaryColor,
-                marginTop: v ? 48 : 36,
-              }}
-            >
-              下期再见！
-            </p>
-          </div>
-        </FullBleedLayout>
+        <T01_HeroSplit
+          title="一键三连！"
+          subtitle="点赞 · 投币 · 收藏"
+          image="media/dingdong-chicken/outro_chicken.png"
+          primaryColor={props.primaryColor}
+          backgroundColor="#FFFFFF"
+          textColor={props.textColor}
+          accentColor={props.accentColor}
+        />
       );
 
     default:
       return (
-        <PaddedLayout bg={props.backgroundColor} orientation={props.orientation}>
-          <div
-            style={{
-              position: "absolute",
-              inset: 0,
-              padding: sectionPadding,
-              display: "flex",
-              flexDirection: "column",
-              ...animStyle,
-            }}
-          >
-            <h2
-              style={{
-                fontSize: v ? 72 : 80,
-                fontWeight: 700,
-                color: props.primaryColor,
-              }}
-            >
-              {section.name}
-            </h2>
-            <div
-              style={{
-                flex: 1,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginTop: 24,
-              }}
-            >
-              <p
-                style={{
-                  fontSize: props.bodySize,
-                  color: props.textColor,
-                  fontWeight: 500,
-                  lineHeight: v ? 1.8 : 1.5,
-                }}
-              >
-                Section content goes here...
-              </p>
-            </div>
-          </div>
-        </PaddedLayout>
+        <AbsoluteFill
+          style={{
+            backgroundColor: "#FFFFFF",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontFamily: FONT,
+          }}
+        >
+          <h2 style={{ fontSize: 72, fontWeight: 700, color: props.primaryColor }}>
+            {section.name}
+          </h2>
+        </AbsoluteFill>
       );
   }
 };
 
+/**
+ * Main video composition for the 叮咚鸡 episode.
+ *
+ * Renders a TransitionSeries driven by timing.json section data,
+ * with ProgressBar outside Scale4K at native 4K resolution, and
+ * audio tracks for TTS narration and optional BGM.
+ */
 export const Video = (props: VideoProps) => {
   const sections = timing.sections;
   const transitionFrames = props.transitionDuration;
   const transitionCount = Math.max(0, sections.length - 1);
 
+  /**
+   * Compensate for transition overlap by adding lost frames to the first section.
+   * Silent sections (is_silent: true) get SILENT_EXTRA_FRAMES additional frames.
+   */
   const compensatedSections = sections.map((s, i) => ({
     ...s,
-    duration_frames: i === 0
-      ? s.duration_frames + transitionCount * transitionFrames
-      : s.duration_frames,
+    duration_frames:
+      (i === 0
+        ? s.duration_frames + transitionCount * transitionFrames
+        : s.duration_frames) +
+      (s.is_silent ? SILENT_EXTRA_FRAMES : 0),
   }));
 
   return (
-    <AbsoluteFill style={{ backgroundColor: props.backgroundColor }}>
+    <AbsoluteFill style={{ backgroundColor: props.backgroundColor, fontFamily: FONT }}>
       <Scale4K orientation={props.orientation}>
         <TransitionSeries>
           {compensatedSections.map((section, i) => (
             <React.Fragment key={section.name}>
-              <TransitionSeries.Sequence durationInFrames={section.duration_frames}>
+              <TransitionSeries.Sequence
+                durationInFrames={section.duration_frames}
+              >
                 <SectionComponent section={section} props={props} />
               </TransitionSeries.Sequence>
-              {i < sections.length - 1 && transitionFrames > 0 && props.transitionType !== "none" && (
-                <TransitionSeries.Transition
-                  presentation={getPresentation(props.transitionType)}
-                  timing={linearTiming({ durationInFrames: transitionFrames })}
-                />
-              )}
+              {i < sections.length - 1 &&
+                transitionFrames > 0 &&
+                props.transitionType !== "none" && (
+                  <TransitionSeries.Transition
+                    presentation={getPresentation(props.transitionType)}
+                    timing={linearTiming({
+                      durationInFrames: transitionFrames,
+                    })}
+                  />
+                )}
             </React.Fragment>
           ))}
         </TransitionSeries>
       </Scale4K>
 
-      {/* Progress bar - minimal 4px line, outside scale(2) wrapper */}
       <ProgressBar props={props} />
 
-      {/* BGM with configurable volume */}
       {props.bgmVolume > 0 && (
         <Audio src={staticFile("bgm.mp3")} volume={props.bgmVolume} />
       )}
 
-      {/* TTS audio */}
       <Audio src={staticFile("podcast_audio.wav")} />
     </AbsoluteFill>
   );
