@@ -376,6 +376,56 @@ rm -rf public/media/{name}
 
 ---
 
+## Workflow State & Resume
+
+**Claude behavior:** Automatically persist workflow progress for error recovery.
+
+### State File
+
+Each video project maintains `videos/{name}/workflow_state.json`:
+
+```json
+{
+  "video_name": "ai-agents-explained",
+  "mode": "auto",
+  "started_at": "2026-03-16T10:30:00",
+  "current_step": 8,
+  "steps": {
+    "1": { "status": "completed", "completed_at": "2026-03-16T10:31:00" },
+    "2": { "status": "completed", "completed_at": "2026-03-16T10:35:00" },
+    "8": { "status": "failed", "error": "AZURE_SPEECH_KEY not set" }
+  }
+}
+```
+
+### Auto-Resume
+
+**Claude behavior:** When the skill is invoked:
+
+1. Check if `videos/*/workflow_state.json` exists for any in-progress video
+2. If found, report status and ask: "检测到未完成的视频项目 `{name}`，当前在第 {N} 步。是否继续？"
+   - **继续** → Resume from the failed/incomplete step
+   - **重新开始** → Reset state, start from Step 1
+   - **新视频** → Start a different video, keep old state
+3. If not found, start fresh
+
+### Step Lifecycle
+
+Each step follows this pattern:
+1. Update state: `status: "in_progress"`
+2. Execute step
+3. On success: `status: "completed"`, record `completed_at`
+4. On failure: `status: "failed"`, record `error` message
+5. On skip (auto mode): `status: "skipped"`
+
+### Manual Resume
+
+Users can explicitly resume:
+- "继续上次的视频" → find latest workflow_state.json, resume
+- "从第8步开始" → resume from Step 8 (validate prior steps' outputs exist)
+
+---
+
 ## Workflow
 
 ### Phase Routing
