@@ -69,8 +69,31 @@ templates/
     FlowChart.tsx                # Horizontal arrow-connected steps
     IconCard.tsx                 # Large icon emphasis card
     ChapterProgressBar.tsx       # Minimal 4px progress line (renders outside Scale4K)
+  section-templates/             # 12 section layout templates (each requires ≥1 image)
+    templates.tsx                # All 12 template components
+    Showcase.tsx                 # Demo compositions with sample data
+    index.ts                     # Barrel export
 assets/                          # BGM tracks, bilibili triple-click animations
 ```
+
+### Section Templates (12 layouts)
+
+Every section MUST use one of these templates. Each template requires at least one image.
+
+| ID | Name | Layout | Use Case |
+|----|------|--------|----------|
+| T01 | HeroSplit | 60/40 left text + right image | Opening, topic intro |
+| T02 | PhotoOverlay | Full-bleed image + text overlay | Atmosphere, dramatic opening |
+| T03 | ImageGrid | 2×2 horizontal cards (left image + right text) | Multi-feature showcase |
+| T04 | QuotePortrait | Decorative quote + circular portrait | Expert quotes, opinions |
+| T05 | SplitDataViz | Data bars left + image right | Data comparison with visual context |
+| T06 | TimelineMedia | Vertical timeline with thumbnails + side image | Milestones, history |
+| T07 | MagazineSpread | Large image left + bullet content right | Deep content, editorial |
+| T08 | StepByStep | Large circular images + numbered steps + metrics | Process, methodology |
+| T09 | BigNumber | Giant stat over muted background image | Key statistics, impact |
+| T10 | DualCompare | Side-by-side with image headers + stats + verdict | A vs B comparison |
+| T11 | FeaturedImage | Single hero image with elegant frame | Image showcase ONLY |
+| T12 | BannerCards | Top banner image + rich info cards below | Dashboard, market overview |
 
 ### Data Flow
 
@@ -122,6 +145,27 @@ export TTS_BACKEND="azure"         # Or "cosyvoice" or "edge" (free, no key need
 export GEMINI_API_KEY="..."        # Optional: AI thumbnails (imagen)
 export EDGE_TTS_VOICE="zh-CN-XiaoxiaoNeural"  # Optional: Edge TTS voice override
 ```
+
+## Design Context
+
+### Users
+B站 (Bilibili) viewers aged 16-30 who consume knowledge/culture commentary videos. They're scrolling feeds on mobile or watching on desktop, expecting visually polished content that matches top-tier B站 UP主 quality. The job: learn something interesting in 5 minutes while being entertained.
+
+### Brand Personality
+**Lively, Bold, Fast-paced** — like a witty friend who explains internet culture with energy and confidence. Not academic, not boring, not try-hard.
+
+### Aesthetic Direction
+- **Visual tone**: Typography-first Marp-like slides with solid color backgrounds. Clean but not sterile — warm colors and generous whitespace keep it approachable.
+- **References**: Top B站 knowledge UP主 video quality, Marp presentation aesthetic
+- **Anti-references**: Generic AI slideshow look, gradient-heavy corporate decks, cluttered infographic style
+- **Theme**: Light mode only, warm palette per topic (this video: peach/orange for cat/cute theme)
+
+### Design Principles
+1. **Typography drives hierarchy** — Size, weight, and color differentiation create structure. No decorative elements needed.
+2. **Solid colors, no shortcuts** — Pure flat backgrounds. No gradients, no shadows, no blur effects.
+3. **Generous breathing room** — Content ≤5 key points per section. White space is a feature, not waste.
+4. **Every section feels different** — Adjacent sections must differ in ≥2 of: background, layout direction, content form.
+5. **Bold but readable** — Large text (≥72px titles), high contrast, readable at any screen size.
 
 ## Troubleshooting
 
