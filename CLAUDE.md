@@ -27,12 +27,12 @@ python3 generate_tts.py --input videos/{name}/podcast.txt --output-dir videos/{n
 python3 generate_tts.py --input videos/{name}/podcast.txt --output-dir videos/{name} --resume    # Skip already-synthesized parts
 TTS_RATE="+15%" python3 generate_tts.py ...                                                      # Control speech rate
 
-# Remotion
+# Remotion (default: H.265 + hardware acceleration)
 npx remotion studio src/remotion/index.ts                                                         # Preview (always use before render)
-npx remotion render src/remotion/index.ts CompositionId videos/{name}/output.mp4 --video-bitrate 16M  # 4K render
-npx remotion render src/remotion/index.ts CompositionId videos/{name}/preview.mp4 --scale 0.33 --crf 28  # Quick 720p preview
+npx remotion render src/remotion/index.ts CompositionId videos/{name}/output.mp4 --codec h265 --video-bitrate 16M --hardware-acceleration if-possible  # 4K HEVC render
+npx remotion render src/remotion/index.ts CompositionId videos/{name}/preview.mp4 --codec h265 --scale 0.33 --crf 28  # Quick 720p preview
 npx remotion still src/remotion/index.ts Thumbnail16x9 videos/{name}/thumbnail_remotion_16x9.png  # Thumbnail
-npx remotion render src/remotion/index.ts MyVideoVertical videos/{name}/output_vertical.mp4 --video-bitrate 16M  # Vertical 9:16
+npx remotion render src/remotion/index.ts MyVideoVertical videos/{name}/output_vertical.mp4 --codec h265 --video-bitrate 16M --hardware-acceleration if-possible  # Vertical 9:16
 npx remotion still src/remotion/index.ts Thumbnail9x16 videos/{name}/thumbnail_remotion_9x16.png  # Vertical thumbnail
 
 # Post-processing (FFmpeg)
@@ -40,9 +40,11 @@ ffmpeg -y -i videos/{name}/output.mp4 -stream_loop -1 -i videos/{name}/bgm.mp3 \
   -filter_complex "[0:a]volume=1.0[a1];[1:a]volume=0.05[a2];[a1][a2]amix=inputs=2:duration=first[aout]" \
   -map 0:v -map "[aout]" -c:v copy -c:a aac -b:a 192k videos/{name}/video_with_bgm.mp4
 
+# Subtitle burn-in (macOS hardware acceleration)
 ffmpeg -y -i videos/{name}/video_with_bgm.mp4 \
   -vf "subtitles=videos/{name}/podcast_audio.srt:force_style='FontName=PingFang SC,FontSize=14,PrimaryColour=&H00333333,OutlineColour=&H00FFFFFF,Bold=1,Outline=2'" \
-  -c:v libx264 -crf 18 -preset slow -s 3840x2160 -c:a copy videos/{name}/final_video.mp4
+  -c:v hevc_videotoolbox -q:v 55 -tag:v hvc1 -s 3840x2160 -c:a copy videos/{name}/final_video.mp4
+# Fallback (no hardware acceleration): -c:v libx265 -crf 18 -preset slow -tag:v hvc1
 ```
 
 ## Architecture
@@ -78,7 +80,7 @@ assets/                          # BGM tracks, bilibili triple-click animations
 
 ### Section Templates (12 layouts)
 
-Every section MUST use one of these templates. Each template requires at least one image.
+Every section MUST use one of these templates. Each template requires at least one image (except T13 which takes a video file).
 
 | ID | Name | Layout | Use Case |
 |----|------|--------|----------|
@@ -94,6 +96,7 @@ Every section MUST use one of these templates. Each template requires at least o
 | T10 | DualCompare | Side-by-side with image headers + stats + verdict | A vs B comparison |
 | T11 | FeaturedImage | Single hero image with elegant frame | Image showcase ONLY |
 | T12 | BannerCards | Top banner image + rich info cards below | Dashboard, market overview |
+| T13 | FullVideo | Full-screen video playback | Video clips, demos, B-roll |
 
 ### Data Flow
 

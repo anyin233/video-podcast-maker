@@ -248,7 +248,50 @@ B站数据显示，哈基米相关视频播放量在二零二三年八月达到�
 
 用户批准后立即生成，下载到 `public/media/{video-name}/`。
 
-### Phase 3.4: 输出 `media_manifest.json`
+### Phase 3.4: 视频素材收集/生成 (Optional)
+
+> **触发条件：** 仅在用户明确要求使用视频素材时执行。不主动提议。
+
+当用户希望在视频中嵌入视频片段（产品演示、动画、B-roll 等），Claude 协助收集或生成视频素材，配合 T13 FullVideo 模板使用。
+
+**视频素材来源：**
+
+| 来源 | 说明 | 获取方式 |
+|------|------|----------|
+| **用户提供** | 用户自有的视频文件 | 用户放入 `public/media/{video-name}/` |
+| **网络收集** | 免费视频素材 (Pexels Video, Pixabay Video 等) | WebSearch + 下载 |
+| **屏幕录制** | 产品演示、网页操作录屏 | 用户自行录制或使用浏览器工具 |
+| **AI 生成** | AI 视频生成服务 | 根据用户指定的工具生成 |
+
+**视频素材要求：**
+
+| 参数 | 要求 |
+|------|------|
+| **格式** | MP4 (H.265/H.264) 或 WebM |
+| **分辨率** | ≥1080p (推荐 1920×1080 或以上) |
+| **时长** | 与对应章节的 TTS 时长匹配 |
+| **存放路径** | `public/media/{video-name}/{section}_video.mp4` |
+
+**AI 视频生成提案模板：**
+
+```markdown
+## 视频生成提案（需要审批）
+
+1. `{section}_video.mp4` — "{视频描述}" (来源: {工具名})
+   - 预期时长: ~{N}s
+   - 用途: {section} 章节全屏播放
+
+👉 批准全部 / 逐个选择 / 跳过
+```
+
+**Claude behavior:**
+
+1. 仅在用户明确提出视频需求时执行此步骤
+2. 评估哪些章节适合使用 T13 FullVideo 模板（产品演示、动画展示、氛围视频等）
+3. 根据视频来源类型，协助用户获取或生成视频
+4. 将视频素材信息记录到 `media_manifest.json`（见 Phase 3.5）
+
+### Phase 3.5: 输出 `media_manifest.json`
 
 所有素材（研究阶段收集 + 补全搜索 + AI 生成）汇总到 manifest：
 
@@ -260,6 +303,7 @@ B站数据显示，哈基米相关视频播放量在二零二三年八月达到�
     {
       "id": "tokaiteio_scene",
       "file": "tokaiteio_scene.jpg",
+      "type": "image",
       "source": "official",
       "origin_research": "research_origin.md",
       "suggested_sections": ["origin"],
@@ -268,9 +312,19 @@ B站数据显示，哈基米相关视频播放量在二零二三年八月达到�
     {
       "id": "maodi_portrait",
       "file": "maodi_portrait.png",
+      "type": "image",
       "source": "ai_generated",
       "prompt": "可爱橘猫正面特写...",
       "suggested_sections": ["maodi"]
+    },
+    {
+      "id": "demo_video",
+      "file": "demo_video.mp4",
+      "type": "video",
+      "source": "user_provided",
+      "duration_seconds": 30,
+      "suggested_sections": ["demo"],
+      "template": "T13"
     }
   ]
 }
@@ -287,7 +341,8 @@ public/media/{video-name}/
 │   └── bilibili_trend_chart.png
 ├── tokaiteio_scene.jpg        # 整理后提升到顶层（被PRD引用的）
 ├── maodi_portrait.png         # AI生成
-└── spread_cats.jpg            # 补全搜索
+├── spread_cats.jpg            # 补全搜索
+└── demo_video.mp4             # 视频素材 (T13, optional)
 ```
 
 **Step 3 完成条件：**
@@ -296,7 +351,8 @@ public/media/{video-name}/
 - [ ] 缺口分析已完成，覆盖所有建议章节
 - [ ] 网络搜索补全已执行（针对 ⚠️/❌ 缺口）
 - [ ] AI 生成提案已提交用户并执行（如有）
-- [ ] `media_manifest.json` 已生成
+- [ ] (Optional) 视频素材已收集/生成并存放到 `public/media/{video-name}/`（如用户要求）
+- [ ] `media_manifest.json` 已生成（视频素材含 `type: "video"` 和 `template: "T13"` 字段）
 - [ ] 所有最终素材已存放在 `public/media/{video-name}/` 顶层
 
 ---
@@ -323,7 +379,8 @@ public/media/{video-name}/
 - `hero`（首章）和 `outro`（末章）为必需章节
 - `summary` 按大部分划分可选插入（见下方 Summary 规则）
 - `references` 可选
-- 内容章节数 3-7 个（总章节 5-9 个）
+- **单个章节时间预算 ≤ 30s**（hero 15-30s，outro 5-15s，内容章节 15-30s）
+- 章节数根据视频时长动态计算：`总时长(s) ÷ 25 ≈ 章节数`（±20%），不设固定上限
 - 预估总时长须与 `topic_definition.md` 时长预期一致（使用 TTS 时长估算公式）
 
 **Summary 章节规则：**
@@ -361,6 +418,7 @@ public/media/{video-name}/
 | StatCounter | 关键数字展示 | Standard | 2-4 计数器 |
 | FlowChart | 流程/步骤 | Standard/Compact | 3-5 步 |
 | IconCard | 单个重点强调 | Impact/Standard | 1 卡片 |
+| T13 FullVideo | 全屏视频播放 (可选) | Impact | 1 视频文件 |
 
 **逐章节设计卡片模板：**
 
@@ -398,6 +456,22 @@ public/media/{video-name}/
 ⏱️ 时间预算: 77s (预估旁白 ~300字, 270字/分×1.15停顿系数)
 
 ✅ 差异化检查: 与上一章在 [背景色, 内容形式] 上不同
+
+--- T13 FullVideo 章节设计卡片示例 ---
+
+=== 章节 {N}: {section_name} — {章节标题} (T13 FullVideo) ===
+
+📚 参考来源:
+  - media_manifest.json: demo_video (demo_video.mp4)
+
+📝 内容范围:
+  - 全屏播放视频片段，旁白配合视频内容讲解
+
+🎬 视频素材:
+  - demo_video.mp4 (30s, 1920×1080, 用户提供)
+  - 模板: T13 FullVideo
+
+⏱️ 时间预算: 30s (视频素材时长)
 
 🔄 用户修改记录: [初始/用户要求将密度从Standard改为Compact]
 ```
@@ -565,10 +639,10 @@ public/media/{video-name}/
 
 | # | Check | Requirement |
 |---|-------|-------------|
-| 1 | 章节数量 | 5-9 个 |
+| 1 | 章节数量 | 总时长(s) ÷ 25 ≈ 章节数（±20%），单章节 ≤ 30s |
 | 2 | 布局多样性 | ≥3 种不同布局类型 |
 | 3 | 背景交替 | 相邻章节背景色不同（outro 若使用动画/视频素材可豁免） |
-| 4 | 密度平衡 | Impact:1-2, Standard:2-4, Compact:0-2, Dense:0-1 |
+| 4 | 密度平衡 | 根据章节数动态调整，保持 Impact/Standard/Compact 合理分布 |
 | 5 | 时长匹配 | TTS 估算总时长在 Step 1 目标范围内（±15%） |
 | 6 | 研究覆盖 | _index.md 建议章节主题均已覆盖 |
 | 7 | 组件多样性 | 相邻章节不重复使用相同主要组件（同组件不同配置不算重复） |

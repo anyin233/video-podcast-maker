@@ -79,7 +79,46 @@ fi
 |------|----------|--------------|
 | Node.js 18+ | `node -v` | `brew install node` |
 | Python 3.8+ | `python3 --version` | `brew install python3` |
-| FFmpeg | `ffmpeg -version` | `brew install ffmpeg` |
+| FFmpeg (含 HEVC) | `ffmpeg -version` | `brew install ffmpeg` |
+
+### 0.1.1 硬件加速检测
+
+渲染前必须检测本地硬件加速支持，以选择最优 HEVC 编码器：
+
+```bash
+echo "=== 硬件加速检测 ==="
+OS=$(uname -s)
+if [ "$OS" = "Darwin" ]; then
+  # macOS: VideoToolbox
+  if ffmpeg -hide_banner -encoders 2>/dev/null | grep -q hevc_videotoolbox; then
+    echo "✓ macOS VideoToolbox HEVC 硬件加速可用"
+    echo "  Remotion: --hardware-acceleration if-possible"
+    echo "  FFmpeg encoder: hevc_videotoolbox"
+    HWACCEL_ENCODER="hevc_videotoolbox"
+  else
+    echo "⚠ VideoToolbox 不可用，将使用软件编码 (libx265)"
+    HWACCEL_ENCODER="libx265"
+  fi
+elif [ "$OS" = "Linux" ]; then
+  # Linux: NVENC (NVIDIA) > VAAPI (AMD/Intel)
+  if ffmpeg -hide_banner -encoders 2>/dev/null | grep -q hevc_nvenc; then
+    echo "✓ NVIDIA NVENC HEVC 硬件加速可用"
+    HWACCEL_ENCODER="hevc_nvenc"
+  elif ffmpeg -hide_banner -encoders 2>/dev/null | grep -q hevc_vaapi; then
+    echo "✓ VAAPI HEVC 硬件加速可用"
+    HWACCEL_ENCODER="hevc_vaapi"
+  else
+    echo "⚠ 无硬件加速，将使用软件编码 (libx265)"
+    HWACCEL_ENCODER="libx265"
+  fi
+else
+  echo "⚠ 未知平台，将使用软件编码 (libx265)"
+  HWACCEL_ENCODER="libx265"
+fi
+echo "HEVC Encoder: $HWACCEL_ENCODER"
+```
+
+**Claude behavior:** 在 Step 10 渲染前自动执行此检测脚本，并根据结果选择 FFmpeg 编码器参数。Remotion 渲染始终使用 `--codec h265 --hardware-acceleration if-possible`（Remotion 自行判断硬件能力），FFmpeg 后处理步骤（字幕烧录等）则使用检测到的 `$HWACCEL_ENCODER`。
 
 ### 0.2 API 密钥
 
@@ -120,6 +159,8 @@ echo "=== 环境检查 ===" && \
 node -v && \
 python3 --version && \
 ffmpeg -version 2>&1 | head -1 && \
+(ffmpeg -hide_banner -encoders 2>/dev/null | grep -q hevc && echo "✓ HEVC 编码支持可用" || echo "⚠ HEVC 编码不可用") && \
+(ffmpeg -hide_banner -encoders 2>/dev/null | grep -qE "hevc_videotoolbox|hevc_nvenc|hevc_vaapi" && echo "✓ HEVC 硬件加速可用" || echo "⚠ HEVC 硬件加速不可用 (将使用 libx265 软件编码)") && \
 [ -n "$AZURE_SPEECH_KEY" ] && echo "✓ AZURE_SPEECH_KEY 已设置" || echo "✗ AZURE_SPEECH_KEY 未设置"
 ```
 
@@ -151,7 +192,8 @@ Automated pipeline to create professional **Bilibili (B站) 横屏知识视频**
 |------|-------------|-------------|
 | **分辨率** | 3840×2160 (4K) | 2160×3840 (4K) |
 | **帧率** | 30 fps | 30 fps |
-| **编码** | H.264, 16Mbps | H.264, 16Mbps |
+| **编码** | H.265 (HEVC), 16Mbps | H.265 (HEVC), 16Mbps |
+| **硬件加速** | 自动检测 (macOS VideoToolbox) | 自动检测 |
 | **音频** | AAC, 192kbps | AAC, 192kbps |
 | **时长** | 1-15 分钟 | 60-90 秒 (精华片段) |
 
@@ -190,8 +232,8 @@ Automated pipeline to create professional **Bilibili (B站) 横屏知识视频**
 
 ## Design Philosophy
 
-Templates follow a **Marp-like clean slide aesthetic** — typography-first, solid colors, generous whitespace, **every section must include at least one image**.
-- **Image-required**: every section uses one of the 12 section templates, each requiring ≥1 image (AI-generated or real)
+Templates follow a **Marp-like clean slide aesthetic** — typography-first, solid colors, generous whitespace, **every section must include at least one image** (except T13 FullVideo which takes a video file).
+- **Image-required**: every section uses one of the 13 section templates, each requiring ≥1 image (AI-generated or real), except T13 which uses a video file
 - **Typography-first hierarchy**: size, weight, and color differentiation drive visual structure
 - **Solid backgrounds only**: pure white or flat colors — no gradients (exception: functional overlays on images for readability)
 - **Content-rich but readable**: high information density while maintaining clear hierarchy
@@ -201,9 +243,9 @@ Templates follow a **Marp-like clean slide aesthetic** — typography-first, sol
 - **Color palette**: match the subject (tech → cool blues/grays, food → warm tones, finance → dark/gold)
 - **Section layouts**: select from 12 section templates; adjacent sections must use different templates
 
-### Section Templates (12 layouts)
+### Section Templates (13 layouts)
 
-每个章节 MUST 从以下 12 个模板中选择。模板定义在 `templates/section-templates/templates.tsx`。
+每个章节 MUST 从以下 13 个模板中选择。模板定义在 `templates/section-templates/templates.tsx`。
 
 | ID | Name | Layout | Use Case |
 |----|------|--------|----------|
@@ -219,11 +261,13 @@ Templates follow a **Marp-like clean slide aesthetic** — typography-first, sol
 | T10 | DualCompare | 双图双列+统计+结论 | A vs B 对比 |
 | T11 | FeaturedImage | 单张大图居中展示 | 仅用于图片展示场景 |
 | T12 | BannerCards | 顶部横幅图+详细卡片 | 数据仪表盘、市场概览 |
+| T13 | FullVideo | 全屏视频播放 | 视频片段、产品演示、B-roll |
 
 **模板选择规则：**
 - 相邻章节不得使用相同模板
 - T11 仅用于需要展示产品截图、示意图、照片的场景，不用于文字内容章节
-- 每个模板都需要至少一张图片（通过 `media_manifest.json` 中的素材或 AI 生成）
+- T13 为可选模板，需用户明确要求使用视频素材时才启用；使用 T13 需在 Step 3 中完成视频素材收集/生成
+- 除 T13 外，每个模板都需要至少一张图片（通过 `media_manifest.json` 中的素材或 AI 生成）
 
 **Anti-patterns (DO NOT use):**
 
@@ -320,7 +364,8 @@ project-root/                           # Remotion 项目根目录
 │   ├── {section}_screenshot.png        # 网页截图
 │   ├── {section}_logo.png              # Logo
 │   ├── {section}_web_{index}.{ext}     # 网络图片
-│   └── {section}_ai.png                # AI 生成图片
+│   ├── {section}_ai.png                # AI 生成图片
+│   └── {section}_video.mp4             # 视频素材 (T13, optional)
 │
 ├── videos/{video-name}/                # 视频项目资产 (非 Remotion 代码)
 │   ├── topic_definition.md             # Step 1: 主题定义
@@ -451,6 +496,7 @@ Users can explicitly resume:
  2c. Research Round 2-3 (depth + verify) → research/_index.md
  3a. Scan research media + gap analysis → 素材清点 + 缺口分析
  3b. Search/AI-generate to fill gaps → media_manifest.json
+ 3c. (Optional) Collect/generate video assets for T13 → video files
  4a. Chapter Blueprint → section_outline.md (draft)
  4b. Per-section interactive design (with asset refs + storyboards)
  4c. Global style + output documents → section_outline.md, section_density.md, section_ui.md
@@ -477,11 +523,13 @@ Users can explicitly resume:
 
 **After Step 10 (Render)**:
 - [ ] `output.mp4` resolution is 3840x2160
+- [ ] Video codec is HEVC (H.265)
 - [ ] Audio-video sync verified
 - [ ] No black frames
 
 **After Step 12 (Final)**:
 - [ ] `final_video.mp4` resolution is 3840x2160
+- [ ] Video codec is HEVC (H.265)
 - [ ] Subtitles display correctly (if added)
 - [ ] File size is reasonable
 
@@ -543,6 +591,7 @@ ffmpeg -i voice.mp3 -i bgm.mp3 \
 - [ ] timing.json 格式正确
 - [ ] 音频时长与 timing 匹配
 - [ ] 环境变量已设置
+- [ ] HEVC 硬件加速检测已完成
 - [ ] 磁盘空间充足 (>20GB for 4K)
 
 **渲染后检查**:
