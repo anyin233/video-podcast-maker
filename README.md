@@ -176,7 +176,9 @@ npx remotion studio src/remotion/index.ts
 ```
 videos/{视频名称}/
 ├── topic_definition.md      # 主题定义
-├── topic_research.md        # 研究笔记
+├── research/                # 研究资料 (多文件)
+│   ├── _index.md           # 研究索引与摘要
+│   └── research_*.md       # 按维度分类
 ├── podcast.txt              # 旁白脚本
 ├── podcast_audio.wav        # TTS 音频
 ├── podcast_audio.srt        # 字幕文件

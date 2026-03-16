@@ -59,16 +59,16 @@ templates/
     index.ts                     # Barrel export
     layouts.tsx                  # Scale4K, FullBleedLayout, PaddedLayout
     animations.tsx               # useEntrance, useExit, useCounter, useBarFill, getPresentation
-    ComparisonCard.tsx           # Two-column VS layout with shadow depth
-    Timeline.tsx                 # Vertical timeline with glowing nodes
+    ComparisonCard.tsx           # Two-column VS layout, clean borders
+    Timeline.tsx                 # Vertical timeline with solid nodes
     CodeBlock.tsx                # Dark terminal code display
-    QuoteBlock.tsx               # Large quote with accent line and gradient bg
-    FeatureGrid.tsx              # 2-3 column icon grid with layered shadows
+    QuoteBlock.tsx               # Left-bordered quote block
+    FeatureGrid.tsx              # 2-3 column icon grid, minimal borders
     DataBar.tsx                  # Animated horizontal bar chart
     StatCounter.tsx              # Animated number tickers
     FlowChart.tsx                # Horizontal arrow-connected steps
     IconCard.tsx                 # Large icon emphasis card
-    ChapterProgressBar.tsx       # Bottom progress bar (renders outside Scale4K)
+    ChapterProgressBar.tsx       # Minimal 4px progress line (renders outside Scale4K)
 assets/                          # BGM tracks, bilibili triple-click animations
 ```
 
@@ -99,7 +99,7 @@ podcast.txt → generate_tts.py → podcast_audio.wav + podcast_audio.srt + timi
 - `Video.tsx` imports components via barrel `./components` — only SectionComponent switch cases and main composition logic live here
 - `Root.tsx` defines Zod schema for all Studio-editable props (colors, typography, transitions, progress bar, orientation)
 - `Root.tsx` registers `MyVideo` (3840x2160) and `MyVideoVertical` (2160x3840) compositions
-- `ChapterProgressBar` renders **outside** the `Scale4K` wrapper at native 4K resolution
+- `ProgressBar` (4px line) renders **outside** the `Scale4K` wrapper at native 4K resolution
 - `TransitionSeries` compensates for overlap by adding lost frames to the first section
 - All components are orientation-aware via `props.orientation` — vertical mode adapts layouts, font sizes, and spacing
 

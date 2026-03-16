@@ -23,8 +23,7 @@ import {
   PaddedLayout,
   useEntrance,
   getPresentation,
-  ChapterProgressBar,
-  IconCard,
+  ProgressBar,
 } from "./components";
 
 // Section renderer - customize your section visuals here
@@ -51,17 +50,6 @@ const SectionComponent = ({
     case "hero":
       return (
         <FullBleedLayout bg={props.backgroundColor}>
-          {/* Decorative radial gradient */}
-          <div style={{
-            position: "absolute", inset: 0,
-            background: `radial-gradient(ellipse at 50% 40%, ${props.primaryColor}12 0%, transparent 70%)`,
-          }} />
-          {/* Decorative circle */}
-          <div style={{
-            position: "absolute", top: -120, right: -80,
-            width: 400, height: 400, borderRadius: "50%",
-            background: `${props.primaryColor}08`,
-          }} />
           <div
             style={{
               position: "absolute",
@@ -81,16 +69,20 @@ const SectionComponent = ({
                 fontWeight: 800,
                 color: props.primaryColor,
                 lineHeight: v ? 1.3 : 1.1,
-                textShadow: `0 2px 16px ${props.primaryColor}15`,
               }}
             >
               视频标题
             </h1>
+            {/* Thin horizontal rule */}
+            <div style={{
+              width: 80, height: 2, marginTop: v ? 28 : 20,
+              background: props.primaryColor, opacity: 0.3,
+            }} />
             <p
               style={{
                 fontSize: props.subtitleSize,
                 color: props.textColor,
-                marginTop: v ? 32 : 20,
+                marginTop: v ? 28 : 16,
                 opacity: 0.6,
                 fontWeight: 500,
               }}
@@ -103,7 +95,7 @@ const SectionComponent = ({
 
     case "overview":
       return (
-        <PaddedLayout bg="#fafafa" orientation={props.orientation}>
+        <PaddedLayout bg={props.backgroundColor} orientation={props.orientation}>
           <div
             style={{
               position: "absolute",
@@ -128,13 +120,19 @@ const SectionComponent = ({
               Section description here
             </p>
             <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: v ? 24 : 20, width: "100%", maxWidth: v ? undefined : 900 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 32, width: "100%", maxWidth: v ? undefined : 900 }}>
                 {[
                   { icon: "💡", title: "要点一", description: "说明文字" },
                   { icon: "🎯", title: "要点二", description: "说明文字" },
                   { icon: "✅", title: "要点三", description: "说明文字" },
                 ].map((item, i) => (
-                  <IconCard key={i} props={props} icon={item.icon} title={item.title} description={item.description} delay={i * 6} />
+                  <div key={i} style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
+                    <span style={{ fontSize: v ? 36 : 32, flexShrink: 0 }}>{item.icon}</span>
+                    <div>
+                      <span style={{ fontSize: v ? 34 : 32, fontWeight: 700, color: props.primaryColor }}>{item.title}</span>
+                      <span style={{ fontSize: v ? 28 : 26, color: props.textColor, marginLeft: 12, opacity: 0.7 }}>{item.description}</span>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -157,37 +155,32 @@ const SectionComponent = ({
               ...animStyle,
             }}
           >
-            <div
+            {/* Thin top divider */}
+            <div style={{
+              width: 60, height: 1, background: props.primaryColor, opacity: 0.2, marginBottom: 36,
+            }} />
+            <h2
               style={{
-                background: `linear-gradient(135deg, ${props.primaryColor}10, ${props.accentColor}10)`,
-                borderRadius: 28,
-                padding: v ? "72px 60px" : "56px 72px",
+                fontSize: v ? 60 : 52,
+                fontWeight: 700,
+                color: props.primaryColor,
+                marginBottom: 28,
                 textAlign: "center",
-                width: v ? "100%" : "auto",
-                border: `1px solid ${props.primaryColor}20`,
-                boxShadow: `0 4px 24px ${props.primaryColor}12, 0 8px 48px rgba(0,0,0,0.04)`,
               }}
             >
-              <h2
-                style={{
-                  fontSize: v ? 60 : 52,
-                  fontWeight: 700,
-                  color: props.primaryColor,
-                  marginBottom: 28,
-                }}
-              >
-                总结
-              </h2>
-              <p
-                style={{
-                  fontSize: v ? 36 : 30,
-                  color: props.textColor,
-                  lineHeight: 1.6,
-                }}
-              >
-                核心结论...
-              </p>
-            </div>
+              总结
+            </h2>
+            <p
+              style={{
+                fontSize: v ? 36 : 30,
+                color: props.textColor,
+                lineHeight: 1.6,
+                textAlign: "center",
+                maxWidth: 800,
+              }}
+            >
+              核心结论...
+            </p>
           </div>
         </FullBleedLayout>
       );
@@ -211,28 +204,26 @@ const SectionComponent = ({
                 fontSize: v ? 72 : 80,
                 fontWeight: 700,
                 color: props.textColor,
-                marginBottom: v ? 64 : 48,
+                marginBottom: v ? 48 : 36,
               }}
             >
               感谢观看
             </h2>
-            <div style={{ display: "flex", gap: v ? 56 : 40, flexDirection: v ? "column" : "row" }}>
-              {[
-                { icon: "👍", text: "点赞" },
-                { icon: "⭐", text: "收藏" },
-                { icon: "🔔", text: "关注" },
-              ].map((item, i) => (
-                <div key={i} style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: v ? 80 : 64 }}>{item.icon}</div>
-                  <div style={{ fontSize: v ? 32 : 26, color: "rgba(0,0,0,0.5)", marginTop: 10 }}>{item.text}</div>
-                </div>
-              ))}
-            </div>
+            <p
+              style={{
+                fontSize: v ? 36 : 32,
+                color: props.textColor,
+                opacity: 0.5,
+                fontWeight: 500,
+              }}
+            >
+              点赞 / 收藏 / 关注
+            </p>
             <p
               style={{
                 fontSize: v ? 44 : 36,
                 color: props.primaryColor,
-                marginTop: v ? 64 : 48,
+                marginTop: v ? 48 : 36,
               }}
             >
               下期再见！
@@ -275,24 +266,17 @@ const SectionComponent = ({
                 marginTop: 24,
               }}
             >
-              <div style={{
-                background: `linear-gradient(135deg, ${props.primaryColor}06, ${props.accentColor}06)`,
-                borderRadius: 24, padding: v ? "40px 44px" : "40px 56px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.03), 0 8px 32px rgba(0,0,0,0.05)",
-                border: `1px solid ${props.primaryColor}10`,
-                width: "100%",
-              }}>
-                <p
-                  style={{
-                    fontSize: props.bodySize,
-                    color: props.textColor,
-                    fontWeight: 500,
-                    lineHeight: v ? 1.8 : 1.5,
-                  }}
-                >
-                  Section content goes here...
-                </p>
-              </div>
+              <p
+                style={{
+                  fontSize: props.bodySize,
+                  color: props.textColor,
+                  fontWeight: 500,
+                  lineHeight: v ? 1.8 : 1.5,
+                  width: "100%",
+                }}
+              >
+                Section content goes here...
+              </p>
             </div>
           </div>
         </PaddedLayout>
@@ -335,8 +319,8 @@ export const Video = (props: VideoProps) => {
         </TransitionSeries>
       </Scale4K>
 
-      {/* Progress bar - outside scale(2) wrapper, renders at native 4K */}
-      <ChapterProgressBar props={props} chapters={timing.sections} />
+      {/* Progress bar - minimal 4px line, outside scale(2) wrapper */}
+      <ProgressBar props={props} />
 
       {/* BGM with configurable volume */}
       {props.bgmVolume > 0 && (

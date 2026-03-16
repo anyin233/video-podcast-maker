@@ -190,17 +190,30 @@ Automated pipeline to create professional **Bilibili (B站) 横屏知识视频**
 
 ## Design Philosophy
 
-Templates (`templates/`) are **starting points, not blueprints**. Claude SHOULD customize the visual design for each video based on its topic:
+Templates follow a **Marp-like clean slide aesthetic** — typography-first, solid colors, generous whitespace.
 
+- **Typography-first hierarchy**: size, weight, and color differentiation drive visual structure
+- **Solid backgrounds only**: pure white or flat colors — no gradients
+- **Generous whitespace**: let content breathe with ample spacing between elements
+- **Minimal borders**: `1px solid rgba(0,0,0,0.08)` when separation is needed, otherwise none
+- **No shadows by default**: exception: CodeBlock keeps its dark terminal background
 - **Color palette**: match the subject (tech → cool blues/grays, food → warm tones, finance → dark/gold)
 - **Section layouts**: create new component arrangements, don't repeat the same layout for every section
-- **Visual variety**: vary section backgrounds, card styles, and emphasis techniques across sections to maintain viewer engagement
-- **Typography**: adjust sizes and weights to create clear visual hierarchy per section's content density
-- **Animations**: use entrance animations and transitions that fit the video's energy and pacing
+
+**Anti-patterns (DO NOT use):**
+
+| Anti-pattern | Reason |
+|-------------|--------|
+| `linear-gradient` on backgrounds | Use solid colors instead |
+| `boxShadow` on cards/containers | Use 1px border or nothing |
+| Decorative shapes (circles, blobs) | Typography provides hierarchy |
+| `textShadow` | Clean text is sharper |
+| `borderRadius > 16px` | Keep corners subtle (8-12px) |
+| `drop-shadow` on icons | Icons render directly |
 
 **What to keep consistent**: Technical Rules above (4K, safe zones, min sizes), component imports from `./components`, and the `timing.json`-driven timing system.
 
-**What to vary freely**: colors, gradients, backgrounds, layout composition, card styles, icon choices, spacing, animation timing, section visual identity.
+**What to vary freely**: colors, solid backgrounds, layout composition, typography scale, icon choices, spacing, animation timing, section visual identity.
 
 ## Quality Checklists (MUST follow)
 
@@ -210,21 +223,21 @@ Claude MUST verify each section meets ALL of these before proceeding:
 
 | # | Check | Requirement |
 |---|-------|-------------|
-| 1 | **Visual depth** | At least 2 layers of depth: shadows, gradients, or foreground/background separation |
+| 1 | **Typographic hierarchy** | 2+ levels of size/weight/color differentiation |
 | 2 | **Adjacent differentiation** | Differs from previous section in ≥2 of: background color, layout direction, content form |
-| 3 | **Complete animation** | Entrance animation on all elements, list items have stagger delay |
-| 4 | **Information density** | ≤5 key points per section, no large empty areas |
-| 5 | **Topic-matched colors** | Color palette serves the content (tech→cool blue, health→warm green, finance→dark blue/gold) |
+| 3 | **Purposeful animation** | Entrance animation on primary content block; stagger on lists optional |
+| 4 | **Generous whitespace** | ≤5 key points per section, generous spacing between elements |
+| 5 | **Topic-matched colors** | Solid color palette (no gradients) serves the content (tech→cool blue, health→warm green, finance→dark blue/gold) |
 
 ### Video-Level Checklist (before render)
 
 | # | Check | Requirement |
 |---|-------|-------------|
 | 1 | **Layout variety** | ≥3 different layout types across the video (centered, grid, split, timeline, etc.) |
-| 2 | **Background alternation** | No 2 consecutive sections share the same background color |
+| 2 | **Background alternation** | No 2 consecutive sections share the same background color; solid colors only |
 | 3 | **Unified color scheme** | Primary/secondary/accent colors used consistently throughout |
 | 4 | **Thumbnail readability** | Title text readable at ~300px thumbnail width |
-| 5 | **Hero impact** | Hero section has visual impact: large text + decorative elements or gradient |
+| 5 | **Hero impact** | Large title (>=80px) with typographic contrast; clean solid background |
 
 ### TTS Quality Guidance
 
@@ -254,10 +267,10 @@ Claude MUST verify each section meets ALL of these before proceeding:
 
 | Pattern | Recommended |
 |---------|-------------|
-| **Card** | `borderRadius: 20–28px`, `padding: 28–44px`, subtle border + shadow |
-| **Section Padding** | `40–80px` content, `60–100px` hero |
-| **Grid Gap** | `20–40px` |
-| **Hero / Impact** | Full viewport centered, no excessive whitespace |
+| **Card** | `borderRadius: 8–12px`, `border: 1px solid rgba(0,0,0,0.08)`, no shadow |
+| **Section Padding** | `60–100px` (generous whitespace) |
+| **Grid Gap** | `24–40px` |
+| **Hero / Impact** | Typography-only impact, generous whitespace, no decorative elements |
 | **Content Max Width** | 800–950px for centered blocks, or full width with padding |
 
 > **Principle:** 这些是经过验证的参考值，不是强制规格。不同视频风格（科技/教育/新闻）可以有不同的视觉表现，只要不低于 Minimums。
@@ -284,7 +297,12 @@ project-root/                           # Remotion 项目根目录
 │
 ├── videos/{video-name}/                # 视频项目资产 (非 Remotion 代码)
 │   ├── topic_definition.md             # Step 1: 主题定义
-│   ├── topic_research.md               # Step 2: 研究资料
+│   ├── research/                       # Step 2: 研究资料 (多文件)
+│   │   ├── _index.md                  # 研究索引与摘要
+│   │   └── research_*.md             # 按维度分类的研究文件
+│   ├── section_outline.md              # Step 3: 章节大纲
+│   ├── section_density.md              # Step 3: 密度分析
+│   ├── section_ui.md                   # Step 3: UI 设计文档
 │   ├── podcast.txt                     # Step 4: 旁白脚本
 │   ├── media_manifest.json             # Step 5: 素材清单
 │   ├── publish_info.md                 # Step 6+13: 发布信息
@@ -339,8 +357,12 @@ rm -rf public/media/{name}
 
 ```
  1. Define topic direction (brainstorming) → topic_definition.md
- 2. Research topic → topic_research.md
- 3. Design video sections (5-7 chapters)
+ 2a. Research Round 1 (breadth) → research/*.md
+ 2b. Brainstorm with user → confirm/expand research
+ 2c. Research Round 2-3 (depth + verify) → research/_index.md
+ 3a. Chapter Blueprint → section_outline.md (draft)
+ 3b. Per-section interactive design (iterate with user)
+ 3c. Global style + output documents → section_outline.md, section_density.md, section_ui.md
  4. Write narration script → podcast.txt
  5. Collect media assets → media_manifest.json
  6. Generate publish info (Part 1) → publish_info.md
@@ -387,24 +409,214 @@ rm -rf public/media/{name}
 
 ---
 
-## Step 2: Research Topic
+## Step 2: Research Topic (Deep Research)
 
-Use WebSearch and WebFetch. Save to `videos/{name}/topic_research.md`.
+基于 Step 1 的 `topic_definition.md`，执行多轮深度调研。所有研究文件保存到 `videos/{name}/research/` 目录。
+
+### Phase 2.1: 初始调研 (Round 1 — Breadth)
+
+**Claude behavior:**
+
+1. 读取 `videos/{name}/topic_definition.md`，提取关键维度
+2. 生成 4-6 个不同角度的搜索查询：
+
+| 维度类型 | 查询示例 |
+|----------|----------|
+| 背景/历史 | "{主题} history timeline" |
+| 技术原理 | "{主题} how it works architecture" |
+| 对比/竞品 | "{主题} vs alternatives comparison" |
+| 应用/案例 | "{主题} use cases real world examples" |
+| 争议/局限 | "{主题} limitations criticism problems" |
+| 最新动态 | "{主题} 2026 latest news updates" |
+
+3. 执行 Round 1（广度搜索）：使用 WebSearch + WebFetch 收集各维度资料
+4. 为每个维度创建 `videos/{name}/research/research_{dimension}.md`
+
+**research_*.md 文件内部结构：**
+
+```markdown
+# {维度名称}
+
+## Primary Sources [P]
+- **[来源标题](URL)** — 一句话摘要
+  > 关键引用或数据
+
+## Secondary Sources [S]
+- ...
+
+## Tertiary Sources [T]
+- ...
+
+## 关键发现
+- [本维度最重要的 3-5 个结论]
+```
+
+**来源质量分级：**
+
+| 级别 | 标记 | 定义 | 示例 |
+|------|------|------|------|
+| Primary | [P] | 一手来源、官方文档、原始论文 | 官方博客、GitHub repo、学术论文 |
+| Secondary | [S] | 二手分析、新闻报道、技术评测 | 科技媒体、知名博主评测 |
+| Tertiary | [T] | 百科、综合性概述 | 维基百科、知乎回答 |
+
+**Round 1 完成标准：** ≥4 个维度文件，每个 ≥3 条来源。
+
+### Phase 2.2: 头脑风暴 (Brainstorm with User)
+
+**Claude behavior:** 向用户呈现研究摘要并收集反馈。每次 AskUserQuestion 问 1-2 个相关问题，分多轮进行。
+
+**呈现内容：** 2-3 段研究摘要（每段 50-80 字），覆盖最重要的发现。
+
+**问题类型：**
+
+| 类型 | 数量 | 格式 | 示例 |
+|------|------|------|------|
+| 事实确认 | 3-5 个 | YES/NO | "XXX 于 2024 年发布，目前市场份额约 30%，是否准确？" |
+| 范围确认 | 2-3 个 | YES/NO | "是否需要覆盖 XXX 的历史演进？" |
+| 深度偏好 | 1 个 | 多选 | "以下哪个角度最想深入？A) 技术原理 B) 应用案例 C) 对比评测" |
+| 开放补充 | 1 个 | 自由回答 | "还有什么遗漏的内容或你特别想提到的？" |
+
+**Gap-filling:** 用户回答后，如果发现新的研究空白，立即使用 WebSearch 补充搜索。
+
+### Phase 2.3: 结构化输出 (Structured Output)
+
+**Claude behavior:**
+
+1. **Round 2（深度）：** 基于用户反馈，深入搜索用户最关注的维度，补充具体数据、案例、引用
+2. **Round 3（验证）：** 交叉验证关键事实（至少 2 个独立来源确认），补充具体数据点（数字、日期、版本号）
+3. 更新各 `research_*.md` 文件
+4. 生成 `videos/{name}/research/_index.md` 索引文件
+
+**research/_index.md 模板：**
+
+```markdown
+# {主题} — 研究索引
+
+## 调研概要
+[200-300字总结：主题是什么、为什么重要、当前状态]
+
+## 调研维度
+| 文件 | 维度 | 要点概括 | 来源数 |
+|------|------|---------|--------|
+| research_history.md | 背景/历史 | ... | 5 |
+| research_tech.md | 技术原理 | ... | 4 |
+| ... | ... | ... | ... |
+
+## 关键数据点 (供脚本使用)
+- [可直接用于旁白的数字、日期、引用]
+- 例："{产品} 于 2024 年 3 月发布，截至 2026 年用户超 500 万"
+
+## 建议章节主题
+1. [章节建议] — 对应 research_xxx.md
+2. ...
+
+## 调研轮次记录
+- Round 1 (广度): [搜索了哪些维度，获得多少来源]
+- Round 2 (深度): [深入了哪些方向，补充了什么]
+- Round 3 (验证): [验证了哪些事实，修正了什么]
+```
+
+### Phase 2.4: 多轮保证 (Multi-Round Guarantee)
+
+| 轮次 | 目标 | 完成标准 |
+|------|------|----------|
+| Round 1 | 广度覆盖 | ≥4 维度，每维度 ≥3 来源 |
+| Round 2 | 深度补充 | 用户关注维度有 ≥5 条高质量来源 |
+| Round 3 | 事实验证 | 关键数据点均有 ≥2 个独立来源确认 |
+
+3 轮后仍有明显空白，可追加至第 5 轮。
+
+**Phase 2 完成条件：**
+
+- [ ] `research/` 目录包含 ≥4 个维度文件
+- [ ] `research/_index.md` 索引文件已生成，包含调研概要和关键数据点
+- [ ] 已与用户完成至少一轮头脑风暴确认
+- [ ] 关键事实已交叉验证
+- [ ] 建议章节主题已列出（供 Step 3 使用）
 
 ---
 
-## Step 3: Design Video Sections
+## Step 3: Design Video Sections (Video PRD)
 
-Design 5-7 sections:
-- Hero/Intro (15-25s)
-- Core concepts (30-45s each)
-- Demo/Examples (30-60s)
-- Comparison/Analysis (30-45s)
-- Summary (20-30s)
+基于 Step 2 的 `research/_index.md`，与用户逐章节交互设计视频结构。输出 3 个文档：`section_outline.md`、`section_density.md`、`section_ui.md`。
 
-### Content Density Selection
+### Phase 3.1: 章节蓝图 (Chapter Blueprint)
 
-Before designing, assign each section a density tier based on content volume:
+**Claude behavior:**
+1. 读取 `videos/{name}/research/_index.md` 的"建议章节主题"和"关键数据点"
+2. 生成初始章节蓝图表：
+
+| # | Section Name | 章节标题 | 对应研究维度 | 关键数据点 | 预估时长 |
+|---|-------------|---------|-------------|-----------|---------|
+| 1 | hero | 开场引入 | — | 1 个核心悬念 | 15-25s |
+| 2 | {name} | {title} | research_{x}.md | {data} | 30-45s |
+| ... | ... | ... | ... | ... | ... |
+| N | outro | 片尾 | — | — | 10-15s |
+
+**规则：**
+- `hero`（首章）和 `outro`（末章）为必需章节
+- `summary` 推荐但可选，`references` 可选
+- 内容章节数 3-7 个（总章节 5-9 个）
+- 预估总时长须与 `topic_definition.md` 时长预期一致
+
+3. 使用 `AskUserQuestion` 将蓝图表呈现给用户，请求确认/增删/重排章节
+4. 根据用户反馈迭代，直至用户确认章节列表
+
+### Phase 3.2: 逐章节交互设计 (Per-Section Design)
+
+对每个内容章节（`hero`/`outro` 除外），呈现设计卡片并逐一与用户确认。
+
+**组件选择参考表：**
+
+| 组件 | 适用场景 | 密度等级 | 典型内容项数 |
+|------|---------|---------|------------|
+| ComparisonCard | A vs B 对比 | Standard | 2 列 |
+| Timeline | 时间线/发展历程 | Compact | 3-6 节点 |
+| CodeBlock | 代码/命令展示 | Standard | 5-15 行 |
+| QuoteBlock | 名人名言/重要引用 | Impact | 1 引用 |
+| FeatureGrid | 多特性展示 | Compact/Dense | 3-6 卡片 |
+| DataBar | 数据对比/排名 | Standard/Compact | 3-6 条 |
+| StatCounter | 关键数字展示 | Standard | 2-4 计数器 |
+| FlowChart | 流程/步骤 | Standard/Compact | 3-5 步 |
+| IconCard | 单个重点强调 | Impact/Standard | 1 卡片 |
+
+**逐章节设计卡片模板：**
+
+```
+=== 章节 {N}: {section_name} — {章节标题} ===
+
+📚 参考来源:
+  - research_xxx.md: [具体发现]
+  - research_yyy.md: [相关数据]
+
+📝 内容范围:
+  - 核心观点 1
+  - 核心观点 2
+  - 可引用数据: "..."
+
+🎨 建议视觉表现:
+  - 组件: FeatureGrid (3列)
+  - 布局: PaddedLayout
+  - 背景色: #f5f5f5
+  - 密度: Standard (3 items)
+
+⏱️ 时间预算: 40s
+
+✅ 差异化检查: 与上一章在 [背景色, 内容形式] 上不同
+```
+
+**Claude behavior:**
+1. 对每个内容章节，填充上述卡片模板
+2. 使用 `AskUserQuestion` 逐章节呈现，用户可调整或说"OK"继续下一章
+3. 自动检查相邻章节差异化约束（背景色、组件类型、密度级别不应与相邻章节完全相同）
+
+### Phase 3.3: 全局风格确认 (Global Style Confirmation)
+
+所有章节设计完成后，呈现全局设计总览并请用户确认。
+
+**密度分配总览：** 汇总各章节密度等级，确保节奏合理。
+
+**Content Density 参考表：**
 
 | Tier | Items | Best For |
 |------|-------|----------|
@@ -413,16 +625,7 @@ Before designing, assign each section a density tier based on content volume:
 | **Compact** | 4-6 | Feature grid, ecosystem |
 | **Dense** | 6+ | Data tables, detailed comparisons — smallest text |
 
-Example section plan with tiers:
-```
-hero: Impact (1 brand moment)
-features: Standard (3 feature cards)
-ecosystem: Compact (5 integration icons)
-performance: Standard (2 comparison bars)
-cta: Impact (1 call-to-action)
-```
-
-### Title Position Confirmation
+**Title Position Confirmation:**
 
 使用 AskUserQuestion 询问用户标题位置偏好：
 
@@ -434,9 +637,131 @@ cta: Impact (1 call-to-action)
 
 **规则：** 单个视频内保持标题位置一致。
 
+**配色方案确认：** 呈现建议的 primaryColor / backgroundColor / textColor / accentColor，请用户确认。
+
+**转场效果选择：** 建议转场效果（fade/slide/wipe）和转场时长（默认 15 帧），请用户确认。
+
+### Phase 3.4: 输出文档生成 (Output Documents)
+
+根据 Phase 3.1-3.3 的设计决策，生成 3 个文档到 `videos/{name}/`：
+
+**1. `section_outline.md` — 详细章节大纲：**
+
+```markdown
+# {主题} — 详细章节大纲
+
+## 基本信息
+- 总章节数: N
+- 预估总时长: X分Y秒
+- 目标时长: [来自 topic_definition.md]
+
+## 章节大纲
+
+### 1. hero — 开场引入
+- **时间预算**: 20s
+- **内容范围**: [要讲什么]
+- **核心数据点**: [来自研究]
+- **参考来源**: —
+- **叙事目标**: 抓住注意力
+
+### 2. {section_name} — {章节标题}
+- **时间预算**: 40s
+- **内容范围**: [要点1, 要点2, 要点3]
+- **核心数据点**: [数字、日期、引用]
+- **参考来源**: research_xxx.md, research_yyy.md
+- **叙事目标**: [让观众记住什么]
+```
+
+**2. `section_density.md` — 密度分析：**
+
+```markdown
+# {主题} — 章节密度分析
+
+## 密度分配总览
+| # | 章节 | 密度 | 内容项数 | 预估时长 | 占比 |
+|---|------|------|---------|---------|------|
+
+## 密度平衡检查
+- [ ] Impact 章节: N 个 (建议 1-2)
+- [ ] Standard 章节: N 个 (建议 2-3)
+- [ ] Compact 章节: N 个 (建议 0-2)
+- [ ] Dense 章节: N 个 (建议 0-1)
+- [ ] 最长/最短章节比值 ≤ 3:1
+
+## 节奏曲线
+[文字描述信息密度变化：开头 Impact → 中段交替 Standard/Compact → 结尾 Impact]
+```
+
+**3. `section_ui.md` — UI 设计文档：**
+
+```markdown
+# {主题} — 章节 UI 设计文档
+
+## 全局设计规范
+- primaryColor: #xxx
+- backgroundColor: #xxx
+- textColor: #xxx
+- accentColor: #xxx
+- 标题位置: 顶部居中
+- 转场效果: fade
+- 转场时长: 15 帧
+
+## 视频级检查清单
+- [ ] ≥3 种布局类型
+- [ ] 相邻章节背景色不同
+- [ ] 统一配色方案
+
+## 逐章节 UI 设计
+
+### 1. hero
+- **布局**: FullBleedLayout
+- **背景色**: #ffffff
+- **组件**: 纯文字
+- **动画**: useEntrance
+- **字号**: title=80px, subtitle=40px
+
+### 2. {section_name}
+- **布局**: PaddedLayout
+- **背景色**: #f5f5f5
+- **组件**: FeatureGrid (columns=3)
+- **动画**: useEntrance + stagger
+- **字号**: section_title=72px, card_title=34px, body=26px
+- **与前一章差异**: 背景色(白→灰), 内容形式(文字→卡片)
+```
+
+### Phase 3.5: 验证与交付 (Validation)
+
+生成文档后，执行以下验证清单：
+
+| # | Check | Requirement |
+|---|-------|-------------|
+| 1 | 章节数量 | 5-9 个 |
+| 2 | 布局多样性 | ≥3 种不同布局类型 |
+| 3 | 背景交替 | 相邻章节背景色不同 |
+| 4 | 密度平衡 | Impact:1-2, Standard:2-3, Compact:0-2, Dense:0-1 |
+| 5 | 时长匹配 | 与 Step 1 预期一致 |
+| 6 | 研究覆盖 | _index.md 建议章节主题均已覆盖 |
+| 7 | 组件多样性 | 相邻章节不重复使用相同主要组件 |
+| 8 | 排版层次 | 每个章节有 2+ 级文字大小 |
+
+**Step 3 完成条件：**
+
+- [ ] Phase 3.1 章节蓝图已获用户确认
+- [ ] Phase 3.2 所有内容章节已逐一获用户确认
+- [ ] Phase 3.3 全局风格已获用户确认
+- [ ] `section_outline.md` 已生成
+- [ ] `section_density.md` 已生成
+- [ ] `section_ui.md` 已生成
+- [ ] Phase 3.5 验证清单全部通过
+
 ---
 
 ## Step 4: Write Narration Script
+
+**Claude behavior:** Before writing podcast.txt, read:
+1. `videos/{name}/section_outline.md` — 章节名称、内容范围、核心数据点
+2. `videos/{name}/section_ui.md` — 章节名称须与 `[SECTION:xxx]` 标记完全一致
+3. `videos/{name}/research/_index.md` — 已验证的关键数据点
 
 Create `videos/{name}/podcast.txt` with section markers:
 
@@ -631,7 +956,7 @@ TTS 脚本支持三种方式校正发音，优先级从高到低：
 
 **Outputs**: `podcast_audio.wav`, `podcast_audio.srt`, `timing.json`
 
-**timing.json `label` field**: Each section gets a human-readable label extracted from the first line of its content (before first punctuation, max 10 chars). This is displayed in the `ChapterProgressBar` component. Example: `[SECTION:hero]` with content "大家好，欢迎来到本期视频" → `label: "大家好"`. Silent sections use the section name as label.
+**timing.json `label` field**: Each section gets a human-readable label extracted from the first line of its content (before first punctuation, max 10 chars). This is displayed in the `ProgressBar` component. Example: `[SECTION:hero]` with content "大家好，欢迎来到本期视频" → `label: "大家好"`. Silent sections use the section name as label.
 ---
 
 ## Step 9: Create Remotion Composition + Studio Preview
@@ -687,12 +1012,12 @@ npm install @remotion/transitions
 
 | 要点 | 说明 |
 |------|------|
-| **ChapterProgressBar 位置** | 必须放在 `scale(2)` 容器**外部**，否则宽度会被压缩 |
+| **ProgressBar 位置** | 必须放在 `scale(2)` 容器**外部**，否则宽度会被压缩 |
 | **章节宽度分配** | 使用 `flex: ch.duration_frames` 按时长比例分配 |
 | **进度指示** | 当前章节内显示白色进度条，底部显示总进度 |
 | **4K 缩放** | 内容区域使用 `scale(2)` 从 1920×1080 放大到 3840×2160 |
 
-**ChapterProgressBar 默认启用**，提供用户导航和进度反馈。如不需要，可在创建视频组件时告知 Claude 关闭。
+**ProgressBar 默认启用**，提供用户导航和进度反馈。如不需要，可在创建视频组件时告知 Claude 关闭。
 
 ### 一键三连片尾
 
@@ -953,7 +1278,12 @@ videos/{name}/
 ├── podcast_audio.wav    # 音频
 ├── podcast_audio.srt    # 字幕
 ├── timing.json          # 时间轴
-├── topic_research.md    # 研究资料
+├── research/            # 研究资料
+│   ├── _index.md
+│   └── research_*.md
+├── section_outline.md   # 章节大纲
+├── section_density.md   # 密度分析
+├── section_ui.md        # UI 设计文档
 ├── publish_info.md      # 发布信息
 ├── thumbnail_*_16x9.png # 封面图 16:9 (必须)
 └── thumbnail_*_4x3.png  # 封面图 4:3 (必须)

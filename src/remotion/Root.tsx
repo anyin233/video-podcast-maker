@@ -11,8 +11,8 @@
 import { Composition, Still } from "remotion";
 import { z } from "zod";
 import { Video } from "./Video";
-import { Thumbnail } from "./Thumbnail";
-import timing from "../public/timing.json";
+// import { Thumbnail } from "./Thumbnail";
+import timing from "../../public/timing.json";
 
 // 【可视化编辑】: Zod Schema 定义可编辑属性
 // Remotion Studio 会自动根据类型生成对应的编辑 UI
@@ -51,11 +51,11 @@ export type VideoProps = z.infer<typeof videoSchema>;
 
 // 【可视化编辑】: 默认值 - Studio 会显示这些作为初始值
 export const defaultVideoProps: VideoProps = {
-  // 颜色 - Marp Gaia-inspired clean palette
-  primaryColor: "#0288d1",
+  // 颜色 - Warm peach/orange for 哈基米 cat theme
+  primaryColor: "#e67e22",
   backgroundColor: "#ffffff",
-  textColor: "#455a64",
-  accentColor: "#37474f",
+  textColor: "#5d4037",
+  accentColor: "#795548",
 
   // 字体大小 (1080p design space, auto scale(2) to 4K)
   // Reference: PluginComparison hero=72, Superpowers hero=120, section=80
@@ -65,7 +65,7 @@ export const defaultVideoProps: VideoProps = {
 
   // 进度条 (minimal 4px line)
   showProgressBar: true,
-  progressColor: "#0288d1",
+  progressColor: "#e67e22",
 
   // 音频
   bgmVolume: 0.05,
@@ -118,32 +118,7 @@ export const RemotionRoot = () => {
         }}
       />
 
-      {/* 16:9 缩略图 - B站/YouTube 封面 */}
-      <Still
-        id="Thumbnail16x9"
-        component={Thumbnail}
-        width={1920}
-        height={1080}
-        defaultProps={{ aspectRatio: "16:9" }}
-      />
-
-      {/* 4:3 缩略图 - B站推荐流/动态 */}
-      <Still
-        id="Thumbnail4x3"
-        component={Thumbnail}
-        width={1200}
-        height={900}
-        defaultProps={{ aspectRatio: "4:3" }}
-      />
-
-      {/* 9:16 缩略图 - 竖屏封面 */}
-      <Still
-        id="Thumbnail9x16"
-        component={Thumbnail}
-        width={1080}
-        height={1920}
-        defaultProps={{ aspectRatio: "9:16" }}
-      />
+      {/* Thumbnails disabled - add Thumbnail.tsx first */}
     </>
   );
 };

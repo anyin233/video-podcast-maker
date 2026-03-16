@@ -1,7 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import type { VideoProps } from "../Root";
-import timing from "../../public/timing.json";
+import timing from "../../../public/timing.json";
 
 export const ProgressBar = ({ props }: { props: VideoProps }) => {
   const frame = useCurrentFrame();

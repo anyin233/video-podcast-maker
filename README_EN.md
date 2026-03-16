@@ -180,7 +180,9 @@ This opens a browser-based editor where you can:
 ```
 videos/{video-name}/
 ├── topic_definition.md      # Topic direction
-├── topic_research.md        # Research notes
+├── research/                # Research files (multi-file)
+│   ├── _index.md           # Research index & summary
+│   └── research_*.md       # By research dimension
 ├── podcast.txt              # Narration script
 ├── podcast_audio.wav        # TTS audio
 ├── podcast_audio.srt        # Subtitles
