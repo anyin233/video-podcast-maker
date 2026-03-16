@@ -270,6 +270,21 @@ Templates follow a **Marp-like clean slide aesthetic** — typography-first, sol
 - T13 为可选模板，需用户明确要求使用视频素材时才启用；使用 T13 需在 Step 3 中完成视频素材收集/生成
 - 除 T13 外，每个模板都需要至少一张图片（通过 `media_manifest.json` 中的素材或 AI 生成）
 
+**模板内容约束（强制）：**
+
+选用模板时，内容**必须**满足以下约束，否则该模板不适用于当前章节：
+
+| Template | Constraint |
+|----------|-----------|
+| T03 ImageGrid | `items` 必须恰好 4 条。每条 `description` ≥ 20 中文字。 |
+| T05 SplitDataViz | **仅在有真实、可验证的数据时使用。** 禁止编造或估算 bar 数值。 |
+| T06 TimelineMedia | **仅用于时间线场景。** 每个 event `label` 20–40 中文字；`description` 30–50 中文字。`events` 数量按需调整。 |
+| T07 MagazineSpread | 所有 `bullets` 文本总计 ≥ 50 中文字。`bullets` 至少 2 条（必须分点展示）。 |
+| T10 DualCompare | `left.items` 和 `right.items` 各至少 7 条。`left.image` 和 `right.image` 必须使用两张**不同**的图片。 |
+| T12 BannerCards | 每张卡片的 `description` ≥ 80 中文字（英文按等效视觉长度折算，约 ≥ 160 拉丁字符）。 |
+
+> **字数计算规则：** 中文字符计 1，英文字母/数字/标点计 0.5（因视觉宽度约为中文的一半）。约束中的"中文字"均使用此加权计算。
+
 **Anti-patterns (DO NOT use):**
 
 | Anti-pattern | Reason |

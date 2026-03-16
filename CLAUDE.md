@@ -98,6 +98,21 @@ Every section MUST use one of these templates. Each template requires at least o
 | T12 | BannerCards | Top banner image + rich info cards below | Dashboard, market overview |
 | T13 | FullVideo | Full-screen video playback | Video clips, demos, B-roll |
 
+### Template Content Constraints
+
+When selecting a template, its content **MUST** satisfy these minimums or the template is invalid for that section:
+
+| Template | Constraint |
+|----------|-----------|
+| T03 | `items` array must have exactly 4 entries. Each item's `description` must be ≥20 Chinese characters. |
+| T05 | **Only use when real, verified data is available.** Do not fabricate or estimate bar values. |
+| T06 | **Timeline use only.** Each event `label` must be 20–40 Chinese characters; each `description` must be 30–50 Chinese characters. `events` array length is flexible (adjust to fit content). |
+| T07 | Total text across all `bullets` must be ≥50 Chinese characters. `bullets` array must have ≥2 entries (must be presented as bullet points). |
+| T10 | `left.items` and `right.items` must each have ≥7 entries. `left.image` and `right.image` must be two **different** image files. |
+| T12 | Each card's `description` must be ≥80 Chinese characters (for English: equivalent visual length to 80 Chinese characters, roughly ≥160 Latin characters). |
+
+> **Character counting rules**: Chinese characters count as 1 each. English letters, digits, and punctuation count as 0.5 each (since they occupy roughly half the width of a Chinese character). When the constraint says "Chinese characters", use this weighted counting.
+
 ### Data Flow
 
 ```

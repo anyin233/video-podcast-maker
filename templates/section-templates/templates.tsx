@@ -2,6 +2,7 @@ import React from "react";
 import {
   AbsoluteFill,
   Img,
+  OffthreadVideo,
   staticFile,
   useCurrentFrame,
   interpolate,
@@ -41,14 +42,14 @@ export const T01_HeroSplit: React.FC<T01Props> = (p) => {
   return (
     <AbsoluteFill style={{ backgroundColor: p.backgroundColor, fontFamily: FONT }}>
       <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "58%", padding: "80px 70px", display: "flex", flexDirection: "column", justifyContent: "center", ...fadeIn(f) }}>
-        <div style={{ width: 48, height: 5, backgroundColor: p.accentColor, borderRadius: 3, marginBottom: 28 }} />
-        <h1 style={{ fontSize: 85, fontWeight: 800, color: p.primaryColor, lineHeight: 1.12, margin: 0, letterSpacing: -1 }}>{p.title}</h1>
-        <p style={{ fontSize: 39, fontWeight: 600, color: p.textColor, opacity: 0.75, margin: "20px 0 0", lineHeight: 1.45 }}>{p.subtitle}</p>
-        {p.description && <p style={{ fontSize: 29, color: p.textColor, opacity: 0.5, margin: "16px 0 0", lineHeight: 1.6 }}>{p.description}</p>}
+        <div style={{ width: 48, height: 5, backgroundColor: p.accentColor, borderRadius: 3, marginBottom: 24 }} />
+        <h1 style={{ fontSize: 85, fontWeight: 800, color: p.primaryColor, lineHeight: 1.15, margin: 0 }}>{p.title}</h1>
+        <p style={{ fontSize: 39, fontWeight: 600, color: p.textColor, opacity: 0.75, margin: "24px 0 0", lineHeight: 1.45 }}>{p.subtitle}</p>
+        {p.description && <p style={{ fontSize: 29, color: p.textColor, opacity: 0.5, margin: "24px 0 0", lineHeight: 1.6 }}>{p.description}</p>}
         {p.tags && (
-          <div style={{ display: "flex", gap: 12, marginTop: 28, ...fadeIn(f, 10) }}>
+          <div style={{ display: "flex", gap: 12, marginTop: 24, ...fadeIn(f, 10) }}>
             {p.tags.map((t, i) => (
-              <span key={i} style={{ fontSize: 23, color: p.accentColor, background: `${p.accentColor}15`, padding: "6px 16px", borderRadius: 20, fontWeight: 600 }}>{t}</span>
+              <span key={i} style={{ fontSize: 23, color: p.accentColor, background: `${p.accentColor}1A`, padding: "8px 20px", borderRadius: 100, fontWeight: 600 }}>{t}</span>
             ))}
           </div>
         )}
@@ -90,6 +91,8 @@ export const T02_PhotoOverlay: React.FC<T02Props> = (p) => {
 
 // ─────────────────────────────────────────────────────────────
 // T03  ImageGrid  —  2×2 card grid with image + text
+// CONSTRAINT: `items` must have exactly 4 entries.
+//             Each item's `description` must be ≥20 Chinese characters.
 // ─────────────────────────────────────────────────────────────
 export interface T03Props {
   title: string;
@@ -149,7 +152,7 @@ export const T04_QuotePortrait: React.FC<T04Props> = (p) => {
       <div style={{ borderLeft: `4px solid ${p.accentColor}`, paddingLeft: 40, maxWidth: 1400, ...fadeIn(f) }}>
         <p style={{ fontSize: 47, fontWeight: 600, color: p.textColor, lineHeight: 1.55, fontStyle: "italic", margin: 0 }}>{p.quote}</p>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 24, marginTop: 48, ...fadeIn(f, 12) }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 20, marginTop: 48, ...fadeIn(f, 12) }}>
         <div style={{ width: 80, height: 80, borderRadius: 40, overflow: "hidden", border: `3px solid ${p.accentColor}`, flexShrink: 0 }}>
           <Img src={staticFile(p.portrait)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
         </div>
@@ -164,6 +167,8 @@ export const T04_QuotePortrait: React.FC<T04Props> = (p) => {
 
 // ─────────────────────────────────────────────────────────────
 // T05  SplitDataViz  —  Data bars left + image right
+// CONSTRAINT: Only use when real, verified data is available.
+//             Do NOT fabricate or estimate bar values.
 // ─────────────────────────────────────────────────────────────
 export interface T05Props {
   title: string;
@@ -213,6 +218,8 @@ export const T05_SplitDataViz: React.FC<T05Props> = (p) => {
 
 // ─────────────────────────────────────────────────────────────
 // T06  TimelineMedia  —  Vertical timeline with thumbnails + detail + right image
+// CONSTRAINT: Timeline use only. Each event `label`: 20–40 Chinese chars;
+//             each `description`: 30–50 Chinese chars. `events` length is flexible.
 // ─────────────────────────────────────────────────────────────
 export interface T06Props {
   title: string;
@@ -275,6 +282,8 @@ export const T06_TimelineMedia: React.FC<T06Props> = (p) => {
 
 // ─────────────────────────────────────────────────────────────
 // T07  MagazineSpread  —  Large image left + content right
+// CONSTRAINT: Total text across all `bullets` must be ≥50 Chinese characters.
+//             `bullets` must have ≥2 entries (bullet-point presentation required).
 // ─────────────────────────────────────────────────────────────
 export interface T07Props {
   title: string;
@@ -355,7 +364,7 @@ export const T08_StepByStep: React.FC<T08Props> = (p) => {
               )}
             </div>
             {i < p.steps.length - 1 && (
-              <div style={{ fontSize: 37, color: p.accentColor, opacity: 0.3, padding: "0 2px", marginTop: 60 }}>→</div>
+              <div style={{ fontSize: 64, fontWeight: 700, color: p.accentColor, padding: "0 2px", marginTop: 60 }}>→</div>
             )}
           </React.Fragment>
         ))}
@@ -402,6 +411,8 @@ export const T09_BigNumber: React.FC<T09Props> = (p) => {
 
 // ─────────────────────────────────────────────────────────────
 // T10  DualCompare  —  Side-by-side with image headers + stats + verdict
+// CONSTRAINT: `left.items` and `right.items` must each have ≥7 entries.
+//             `left.image` and `right.image` must be two different image files.
 // ─────────────────────────────────────────────────────────────
 export interface T10Props {
   title: string;
@@ -490,7 +501,7 @@ export const T11_FeaturedImage: React.FC<T11Props> = (p) => {
         {p.tag && <span style={{ fontSize: 23, fontWeight: 600, color: p.accentColor, background: `${p.accentColor}12`, padding: "4px 14px", borderRadius: 16 }}>{p.tag}</span>}
         <h2 style={{ fontSize: 61, fontWeight: 800, color: p.primaryColor, margin: 0 }}>{p.title}</h2>
       </div>
-      <div style={{ flex: 1, width: "92%", marginTop: 28, borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)", ...fadeIn(f, 6) }}>
+      <div style={{ flex: 1, width: "85%", marginTop: 28, borderRadius: 16, overflow: "hidden", border: "1px solid rgba(0,0,0,0.08)", ...fadeIn(f, 6) }}>
         <Img src={staticFile(p.image)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
       </div>
       <p style={{ fontSize: 29, color: p.textColor, opacity: 0.55, margin: "20px 0 0", textAlign: "center", maxWidth: 900, lineHeight: 1.5, ...fadeIn(f, 12) }}>{p.caption}</p>
@@ -500,6 +511,8 @@ export const T11_FeaturedImage: React.FC<T11Props> = (p) => {
 
 // ─────────────────────────────────────────────────────────────
 // T12  BannerCards  —  Top image banner + rich info cards below
+// CONSTRAINT: Each card's `description` must be ≥80 Chinese characters
+//             (English: ≥160 Latin characters for equivalent visual length).
 // ─────────────────────────────────────────────────────────────
 export interface T12Props {
   title: string;
@@ -541,6 +554,33 @@ export const T12_BannerCards: React.FC<T12Props> = (p) => {
         ))}
       </div>
       {p.footnote && <p style={{ position: "absolute", bottom: 12, left: 56, fontSize: 22, color: p.textColor, opacity: 0.3 }}>{p.footnote}</p>}
+    </AbsoluteFill>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────
+// T13  FullVideo  —  Full-screen video playback
+// ─────────────────────────────────────────────────────────────
+export interface T13Props {
+  video?: string;
+  label?: string;
+  backgroundColor?: string;
+}
+
+export const T13_FullVideo: React.FC<T13Props> = (p) => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{ backgroundColor: p.backgroundColor ?? "#000", fontFamily: FONT }}>
+      {p.video ? (
+        <OffthreadVideo src={staticFile(p.video)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      ) : (
+        <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", backgroundColor: "#1A1A1A", ...fadeIn(f) }}>
+          <div style={{ width: 120, height: 120, borderRadius: 60, backgroundColor: "rgba(255,255,255,0.12)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ width: 0, height: 0, borderTop: "24px solid transparent", borderBottom: "24px solid transparent", borderLeft: "40px solid rgba(255,255,255,0.5)", marginLeft: 8 }} />
+          </div>
+          <span style={{ fontSize: 28, fontWeight: 500, color: "rgba(255,255,255,0.25)", marginTop: 16 }}>{p.label ?? "Full-Screen Video"}</span>
+        </div>
+      )}
     </AbsoluteFill>
   );
 };
