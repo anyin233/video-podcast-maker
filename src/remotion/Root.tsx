@@ -55,11 +55,11 @@ export type VideoProps = z.infer<typeof videoSchema>;
 
 // 【可视化编辑】: 默认值 - Studio 会显示这些作为初始值
 export const defaultVideoProps: VideoProps = {
-  // 颜色 - Bright yellow/orange for 叮咚鸡 meme theme
-  primaryColor: "#FFD700",
+  // 颜色 - B站 pink + blue for Chen Rui video
+  primaryColor: "#FB7299",
   backgroundColor: "#FFFFFF",
   textColor: "#333333",
-  accentColor: "#FF6B35",
+  accentColor: "#00A1D6",
 
   // 字体大小 (1080p design space, auto scale(2) to 4K)
   // Reference: PluginComparison hero=72, Superpowers hero=120, section=80
@@ -69,7 +69,7 @@ export const defaultVideoProps: VideoProps = {
 
   // 进度条 (minimal 4px line)
   showProgressBar: true,
-  progressColor: "#FFD700",
+  progressColor: "#FB7299",
 
   // 音频
   bgmVolume: 0.05,
