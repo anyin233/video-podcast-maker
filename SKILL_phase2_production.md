@@ -34,7 +34,7 @@ next: SKILL_phase3_video.md
 | section_density.md `预估字数` | 直接使用 | 每章节旁白字数上限 |
 | section_density.md `TTS时长` | 字数 = 时长(s) × 270 ÷ 60 ÷ 1.15 | 反算验证 |
 
-写作时逐章节检查字数，偏差控制在 ±15% 以内。超过 ±15% 时 Claude 自行增删内容调整，无需询问用户。
+**⚠️ 单页节奏硬约束：** 每个 `[SECTION:xxx]` 对应一页 slide，旁白字数上限 **~80 字**（≤ 20s），平均 **~40 字**（~10s）。写作时逐章节检查字数，偏差控制在 ±15% 以内。超过 ±15% 时 Claude 自行增删内容调整，无需询问用户。**如果某章节字数超过 80 字，必须拆分为多个 `[SECTION:xxx]`。**
 
 **语气与风格:**
 
@@ -112,10 +112,11 @@ Report estimated duration to user. If too long (>12min) or too short (<3min), su
 |---|-------|-------------|
 | 1 | 章节完整性 | 所有 section_outline.md 章节均有对应 `[SECTION:xxx]` 标记 |
 | 2 | 字数预算 | 每章节字数与 section_density.md 预估字数偏差 ≤15% |
-| 3 | 数据点覆盖 | section_outline.md 的核心数据点在旁白中出现 |
-| 4 | 中文数字 | 所有阿拉伯数字已转为中文读音 |
-| 5 | 时长匹配 | dry-run 总时长与 section_density.md 预估总时长偏差 ≤15% |
-| 6 | 风格一致 | 语气与 topic_definition.md 视频风格匹配 |
+| 3 | **单页字数上限** | **每个 `[SECTION:xxx]` 旁白 ≤ 80 字（≤ 20s），超过则必须拆分** |
+| 4 | 数据点覆盖 | section_outline.md 的核心数据点在旁白中出现 |
+| 5 | 中文数字 | 所有阿拉伯数字已转为中文读音 |
+| 6 | 时长匹配 | dry-run 总时长与 section_density.md 预估总时长偏差 ≤15% |
+| 7 | 风格一致 | 语气与 topic_definition.md 视频风格匹配 |
 
 ---
 

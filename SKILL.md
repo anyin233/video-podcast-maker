@@ -207,6 +207,7 @@ Automated pipeline to create professional **Bilibili (B站) 横屏知识视频**
 |------|-------------|
 | **Single Project** | All videos live under `videos/{name}/` in the user's Remotion project. NEVER create a new project/repo for each video. Remotion code, templates, and components are shared; only per-video assets (podcast.txt, audio, timing.json, output MP4) go in each subfolder. |
 | **4K Output** | 3840×2160, use `scale(2)` wrapper over 1920×1080 design space |
+| **Slide Pacing** | **每页最多展示 20 秒，平均 10 秒/页**。观众专注度有限，快节奏切换保持注意力。单页旁白上限 ~80 字，平均 ~40 字。章节数 ≈ `总时长(s) ÷ 10`。 |
 | **Content Width** | ≥85% of screen width, no tiny centered boxes |
 | **Bottom Safe Zone** | Bottom 100px reserved for subtitles |
 | **Audio Sync** | All animations driven by `timing.json` timestamps |
