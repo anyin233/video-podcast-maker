@@ -207,7 +207,7 @@ Automated pipeline to create professional **Bilibili (B站) 横屏知识视频**
 |------|-------------|
 | **Single Project** | All videos live under `videos/{name}/` in the user's Remotion project. NEVER create a new project/repo for each video. Remotion code, templates, and components are shared; only per-video assets (podcast.txt, audio, timing.json, output MP4) go in each subfolder. |
 | **4K Output** | 3840×2160, use `scale(2)` wrapper over 1920×1080 design space |
-| **Slide Pacing** | **每页最多展示 20 秒，平均 10 秒/页**。观众专注度有限，快节奏切换保持注意力。单页旁白上限 ~80 字，平均 ~40 字。章节数 ≈ `总时长(s) ÷ 10`。 |
+| **Slide Pacing (MANDATORY)** | **硬性约束，所有视频必须遵守，无例外。** 每页（section）最多展示 **20 秒**，平均 **10 秒/页**。单页旁白上限 **~80 字**，平均 **~40 字**。章节数 ≈ `总时长(s) ÷ 10`。写 `podcast.txt` 时，每个 `[SECTION:xxx]` 应只包含 **1-2 句话**。必须在 TTS dry-run 后验证：(1) 所有 section < 20s；(2) 平均 ≤ 12s；(3) section 数量 ≈ 总时长/10。不满足则必须拆分后重新生成。 |
 | **Content Width** | ≥85% of screen width, no tiny centered boxes |
 | **Bottom Safe Zone** | Bottom 100px reserved for subtitles |
 | **Audio Sync** | All animations driven by `timing.json` timestamps |
@@ -517,7 +517,10 @@ Users can explicitly resume:
  4b. Per-section interactive design (with asset refs + storyboards)
  4c. Global style + output documents → section_outline.md, section_density.md, section_ui.md
  5a. Read PRDs + write narration script → podcast.txt (draft)
+     CRITICAL: Each [SECTION:xxx] MUST contain only 1-2 sentences (~40 chars avg, max ~80 chars).
+     Target section count ≈ total_duration(s) ÷ 10.
  5b. Dry-run + iterate word budgets → podcast.txt (final)
+     MANDATORY PACING GATE: verify ALL sections < 20s, avg ≤ 12s before proceeding.
  6. Generate publish info (Part 1) → publish_info.md
  7. Generate thumbnails (16:9 + 4:3) → thumbnail_*.png
  8. Generate TTS audio + validate → podcast_audio.wav, timing.json
@@ -535,7 +538,15 @@ Users can explicitly resume:
 
 **After Step 3 (Media Consolidation)**: Verify `media_manifest.json` covers all suggested sections from `research/_index.md`.
 
-**After Step 8 (TTS)**: See Post-TTS 验证清单 in Step 8 (6-point checklist).
+**After Step 5b (Script Dry-run) — PACING GATE (MANDATORY)**:
+This gate MUST pass before proceeding to TTS generation. Run `--dry-run` and verify:
+- [ ] **Every** section duration < 20s (HARD LIMIT — no exceptions)
+- [ ] Average section duration ≤ 12s (target ~10s)
+- [ ] Section count ≈ `total_duration / 10` (±20%)
+- [ ] No section has > 80 Chinese chars of narration
+If any check fails: split offending sections (1-2 sentences each), re-run dry-run, repeat until all pass.
+
+**After Step 8 (TTS)**: See Post-TTS 验证清单 in Step 8 (6-point checklist). Additionally re-verify all pacing checks above with actual TTS timing (not dry-run estimates).
 
 **After Step 10 (Render)**:
 - [ ] `output.mp4` resolution is 3840x2160
