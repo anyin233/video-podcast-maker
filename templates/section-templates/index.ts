@@ -11,6 +11,7 @@ export {
   T10_DualCompare,
   T11_FeaturedImage,
   T12_BannerCards,
+  T13_FullVideo,
 } from "./templates";
 
 export type {
@@ -26,6 +27,7 @@ export type {
   T10Props,
   T11Props,
   T12Props,
+  T13Props,
 } from "./templates";
 
 export {
