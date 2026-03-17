@@ -141,11 +141,12 @@ podcast.txt → generate_tts.py → podcast_audio.wav + podcast_audio.srt + timi
 - `Root.tsx` defines Zod schema for all Studio-editable props (colors, typography, transitions, progress bar, orientation)
 - `Root.tsx` registers `MyVideo` (3840x2160) and `MyVideoVertical` (2160x3840) compositions
 - `ProgressBar` (4px line) renders **outside** the `Scale4K` wrapper at native 4K resolution
-- `TransitionSeries` compensates for overlap by adding lost frames to the first section
+- `TransitionSeries` compensates for overlap by adding `transitionFrames` to each section (except the last)
 - All components are orientation-aware via `props.orientation` — vertical mode adapts layouts, font sizes, and spacing
 
 ## Critical Rules
 
+- **Slide Pacing (MANDATORY)** — Every section MUST be < 20s, average ≤ 12s (target ~10s). Each `[SECTION:xxx]` in `podcast.txt` should contain only 1-2 sentences (~40 chars). Section count ≈ `total_duration(s) ÷ 10`. Verify with `--dry-run` before TTS generation. This is a hard gate — no exceptions.
 - **Always 4K output** — horizontal 3840×2160, vertical 2160×3840 — use `transform: scale(2)` wrapper in Remotion
 - **Use `npx remotion studio` for preview** — real-time debugging before final render
 - **Silent sections** (`[SECTION:outro]` with empty content) get `is_silent: true` — Remotion adds 150 extra frames
