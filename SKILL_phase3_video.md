@@ -273,15 +273,46 @@ npx remotion studio src/remotion/index.ts
 ## Step 10: Render Video
 
 > Use `npx remotion studio` for preview, then render directly for final output.
+> **默认使用 H.265 (HEVC) 编码** — 更高压缩比，更小文件体积，B站原生支持。
+
+### 10.0 渲染前硬件加速检测
+
+**Claude behavior:** 渲染前必须执行硬件加速检测脚本（见 SKILL.md §0.1.1），确认 HEVC 编码器可用性。检测结果决定 FFmpeg 后处理步骤的编码器选择。
 
 ```bash
-npx remotion render src/remotion/index.ts CompositionId videos/{name}/output.mp4 --video-bitrate 16M
+echo "=== 渲染前硬件加速检测 ==="
+OS=$(uname -s)
+HWACCEL_ENCODER="libx265"
+HWACCEL_OPTS="-crf 18 -preset slow"
+if [ "$OS" = "Darwin" ] && ffmpeg -hide_banner -encoders 2>/dev/null | grep -q hevc_videotoolbox; then
+  HWACCEL_ENCODER="hevc_videotoolbox"
+  HWACCEL_OPTS="-q:v 55"
+  echo "✓ 使用 macOS VideoToolbox 硬件加速 (hevc_videotoolbox)"
+elif [ "$OS" = "Linux" ] && ffmpeg -hide_banner -encoders 2>/dev/null | grep -q hevc_nvenc; then
+  HWACCEL_ENCODER="hevc_nvenc"
+  HWACCEL_OPTS="-cq 20 -preset p5"
+  echo "✓ 使用 NVIDIA NVENC 硬件加速 (hevc_nvenc)"
+elif [ "$OS" = "Linux" ] && ffmpeg -hide_banner -encoders 2>/dev/null | grep -q hevc_vaapi; then
+  HWACCEL_ENCODER="hevc_vaapi"
+  HWACCEL_OPTS="-qp 22"
+  echo "✓ 使用 VAAPI 硬件加速 (hevc_vaapi)"
+else
+  echo "⚠ 无硬件加速，使用软件编码 (libx265 -crf 18 -preset slow)"
+fi
+echo "HEVC Encoder: $HWACCEL_ENCODER $HWACCEL_OPTS"
 ```
 
-**验证 4K**:
+### 10.1 渲染横屏 4K 视频
+
 ```bash
-ffprobe -v quiet -show_entries stream=width,height -of csv=p=0 videos/{name}/output.mp4
-# 期望: 3840,2160
+npx remotion render src/remotion/index.ts CompositionId videos/{name}/output.mp4 \
+  --codec h265 --video-bitrate 16M --hardware-acceleration if-possible
+```
+
+**验证 4K + HEVC**:
+```bash
+ffprobe -v quiet -show_entries stream=width,height,codec_name -of csv=p=0 videos/{name}/output.mp4
+# 期望: hevc,3840,2160 (或 h265,3840,2160)
 ```
 
 ### Optional: Render Vertical Highlight Clip (9:16)
@@ -289,15 +320,16 @@ ffprobe -v quiet -show_entries stream=width,height -of csv=p=0 videos/{name}/out
 Generate a 60-90 second vertical video for B站竖屏/短视频, using the same audio and components.
 
 ```bash
-# Render vertical version (uses MyVideoVertical composition)
-npx remotion render src/remotion/index.ts MyVideoVertical videos/{name}/output_vertical.mp4 --video-bitrate 16M
+# Render vertical version (uses MyVideoVertical composition, H.265 + hardware acceleration)
+npx remotion render src/remotion/index.ts MyVideoVertical videos/{name}/output_vertical.mp4 \
+  --codec h265 --video-bitrate 16M --hardware-acceleration if-possible
 
 # Render 9:16 thumbnail
 npx remotion still src/remotion/index.ts Thumbnail9x16 videos/{name}/thumbnail_remotion_9x16.png
 
 # Verify
-ffprobe -v quiet -show_entries stream=width,height -of csv=p=0 videos/{name}/output_vertical.mp4
-# 期望: 2160,3840
+ffprobe -v quiet -show_entries stream=width,height,codec_name -of csv=p=0 videos/{name}/output_vertical.mp4
+# 期望: hevc,2160,3840
 ```
 
 The vertical composition reuses the same Video.tsx component with `orientation: "vertical"`. All section layouts, components (ComparisonCard, FeatureGrid, etc.), and Scale4K automatically adapt for 9:16.
@@ -305,6 +337,8 @@ The vertical composition reuses the same Video.tsx component with `orientation: 
 ---
 
 ## Step 11: Mix with Background Music
+
+> BGM 混音仅操作音频流，视频流直接复制（`-c:v copy`），保留原始 H.265 编码不变。
 
 ```bash
 cp ~/.claude/skills/video-podcast-maker/assets/perfect-beauty-191271.mp3 videos/{name}/bgm.mp3
@@ -330,16 +364,32 @@ cp videos/{name}/video_with_bgm.mp4 videos/{name}/final_video.mp4
 ```
 
 **添加字幕（纯白背景用深色字幕）**:
+
+> 字幕烧录需重新编码视频流。使用 Step 10.0 检测到的 HEVC 编码器（`$HWACCEL_ENCODER`）。
+
+**macOS 硬件加速版本（默认，使用 VideoToolbox）：**
 ```bash
 ffmpeg -y -i videos/{name}/video_with_bgm.mp4 \
   -vf "subtitles=videos/{name}/podcast_audio.srt:force_style='FontName=PingFang SC,FontSize=14,PrimaryColour=&H00333333,OutlineColour=&H00FFFFFF,Bold=1,Outline=2,Shadow=0,MarginV=20'" \
-  -c:v libx264 -crf 18 -preset slow -s 3840x2160 \
+  -c:v hevc_videotoolbox -q:v 55 -tag:v hvc1 -s 3840x2160 \
   -c:a copy videos/{name}/final_video.mp4
 ```
 
+**软件编码回退版本（无硬件加速时）：**
+```bash
+ffmpeg -y -i videos/{name}/video_with_bgm.mp4 \
+  -vf "subtitles=videos/{name}/podcast_audio.srt:force_style='FontName=PingFang SC,FontSize=14,PrimaryColour=&H00333333,OutlineColour=&H00FFFFFF,Bold=1,Outline=2,Shadow=0,MarginV=20'" \
+  -c:v libx265 -crf 18 -preset slow -tag:v hvc1 -s 3840x2160 \
+  -c:a copy videos/{name}/final_video.mp4
+```
+
+**Claude behavior:** 根据 Step 10.0 检测结果自动选择对应命令。优先使用硬件加速版本。
+
 **关键参数**:
-- `-s 3840x2160` - 强制 4K
-- `-crf 18 -preset slow` - 高质量编码
+- `-s 3840x2160` — 强制 4K
+- `-tag:v hvc1` — Apple/B站兼容的 HEVC tag
+- `hevc_videotoolbox -q:v 55` — macOS 硬件加速（质量值越低质量越高，55 约等于 CRF 18）
+- `libx265 -crf 18 -preset slow` — 软件编码回退，高质量
 
 ---
 
@@ -384,9 +434,13 @@ RES=$(ffprobe -v quiet -select_streams v:0 -show_entries stream=width,height -of
 DUR=$(ffprobe -v quiet -show_entries format=duration -of csv=p=0 "$VIDEO_DIR/final_video.mp4" | cut -d. -f1)
 echo "✓ 时长: ${DUR}s"
 
-# 编码
+# 编码 (期望 HEVC/H.265)
 CODEC=$(ffprobe -v quiet -select_streams v:0 -show_entries stream=codec_name -of csv=p=0 "$VIDEO_DIR/final_video.mp4")
-echo "✓ 视频编码: $CODEC"
+if [ "$CODEC" = "hevc" ]; then
+  echo "✓ 视频编码: H.265 (HEVC)"
+else
+  echo "⚠ 视频编码: $CODEC (期望 hevc/H.265)"
+fi
 
 # 文件大小
 SIZE=$(ls -lh "$VIDEO_DIR/final_video.mp4" | awk '{print $5}')
@@ -402,7 +456,8 @@ echo "✓ 文件大小: $SIZE"
 ✓ 文件完整性: 6/6
 ✓ 分辨率: 3840x2160
 ✓ 时长: XXs
-✓ 编码: h264
+✓ 编码: H.265 (HEVC)
+✓ 硬件加速: VideoToolbox / NVENC / 软件编码
 ✓ 大小: XXX MB
 
 是否需要清理临时文件？(Step 15)
