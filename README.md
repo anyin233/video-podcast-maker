@@ -87,6 +87,6 @@ npx remotion render src/remotion/index.ts MyVideo videos/xxx/output.mp4 --codec 
 
 MIT
 
-## 作者
+## 致谢
 
-**Agents365-ai** · [B站](https://space.bilibili.com/441831884) · [GitHub](https://github.com/Agents365-ai)
+本项目基于 [Agents365-ai](https://github.com/Agents365-ai) 的 [video-podcast-maker](https://github.com/Agents365-ai/video-podcast-maker) 制作。感谢原作者的开源贡献。
