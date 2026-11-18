@@ -1,0 +1,3974 @@
+{
+  "version": "2.8",
+  "children": [
+    {
+      "type": "frame",
+      "id": "vBJ7Q",
+      "x": 0,
+      "y": 0,
+      "name": "T01 HeroSplit",
+      "width": 1920,
+      "height": 1080,
+      "fill": "$bg",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ABK22",
+          "name": "leftSide",
+          "width": 1114,
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": [
+            80,
+            70
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 3,
+              "id": "eTOsH",
+              "name": "accentBar",
+              "fill": "$accent",
+              "width": 48,
+              "height": 5
+            },
+            {
+              "type": "text",
+              "id": "Wlxux",
+              "name": "titleText",
+              "fill": "$text",
+              "content": "人工智能的下一个十年",
+              "lineHeight": 1.15,
+              "fontFamily": "Inter",
+              "fontSize": 85,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "xIezM",
+              "name": "subtitleText",
+              "fill": "$text-75",
+              "textGrowth": "fixed-width",
+              "width": 974,
+              "content": "从大语言模型到通用人工智能，技术演进全景解析",
+              "fontFamily": "Inter",
+              "fontSize": 39,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "ftODs",
+              "name": "descText",
+              "fill": "$text-50",
+              "textGrowth": "fixed-width",
+              "width": 974,
+              "content": "探索 AI 如何重塑产业格局与人类生活方式",
+              "fontFamily": "Inter",
+              "fontSize": 29,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "lzHUs",
+              "name": "tagsRow",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "fhcSW",
+                  "name": "tag1",
+                  "fill": "$accent-10",
+                  "cornerRadius": 100,
+                  "padding": [
+                    8,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Iwub6",
+                      "name": "tag1Text",
+                      "fill": "$accent",
+                      "content": "AI",
+                      "fontFamily": "Inter",
+                      "fontSize": 23,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZEW2V",
+                  "name": "tag2",
+                  "fill": "$accent-10",
+                  "cornerRadius": 100,
+                  "padding": [
+                    8,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "5kfOy",
+                      "name": "tag2Text",
+                      "fill": "$accent",
+                      "content": "深度学习",
+                      "fontFamily": "Inter",
+                      "fontSize": 23,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uF75C",
+                  "name": "tag3",
+                  "fill": "$accent-10",
+                  "cornerRadius": 100,
+                  "padding": [
+                    8,
+                    20
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "c4E29",
+                      "name": "tag3Text",
+                      "fill": "$accent",
+                      "content": "AGI",
+                      "fontFamily": "Inter",
+                      "fontSize": 23,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Fjft0",
+          "name": "rightSide",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "padding": 40,
+          "children": [
+            {
+              "type": "frame",
+              "id": "IfKXs",
+              "name": "imgFrame",
+              "metadata": {
+                "type": "unsplash",
+                "username": "buddhaelemental3d",
+                "link": "https://unsplash.com/@buddhaelemental3d",
+                "author": "Buddha Elemental 3D"
+              },
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "https://images.unsplash.com/photo-1719085202437-c6ecb814bb9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI2NDl8&ixlib=rb-4.1.0&q=80&w=1080",
+                "mode": "fill"
+              },
+              "cornerRadius": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "X4dcf",
+      "x": 2020,
+      "y": 0,
+      "name": "T02 PhotoOverlay",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#000000",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "PHCVL",
+          "x": 0,
+          "y": 0,
+          "name": "imgBg",
+          "metadata": {
+            "type": "unsplash",
+            "username": "debbieducic",
+            "link": "https://unsplash.com/@debbieducic",
+            "author": "Debbie Ducic"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "https://images.unsplash.com/photo-1707723029914-e4f3e27ebc5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI2OTV8&ixlib=rb-4.1.0&q=80&w=1080",
+            "mode": "fill"
+          }
+        },
+        {
+          "type": "rectangle",
+          "id": "etiEs",
+          "x": 0,
+          "y": 0,
+          "name": "overlay",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": 0,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#0000008C",
+                "position": 0
+              },
+              {
+                "color": "#00000000",
+                "position": 0.7
+              }
+            ]
+          },
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "type": "frame",
+          "id": "7KiRf",
+          "x": 0,
+          "y": 0,
+          "name": "content",
+          "width": 1920,
+          "height": 1080,
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            0,
+            80,
+            80,
+            80
+          ],
+          "justifyContent": "end",
+          "children": [
+            {
+              "type": "text",
+              "id": "OdOZ2",
+              "name": "title",
+              "fill": "$white",
+              "content": "当机器开始理解世界",
+              "fontFamily": "Inter",
+              "fontSize": 81,
+              "fontWeight": "800"
+            },
+            {
+              "type": "rectangle",
+              "id": "ixXAc",
+              "name": "divider",
+              "fill": "$white",
+              "width": 60,
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "hzM7K",
+              "name": "subtitle",
+              "fill": "$white-88",
+              "textGrowth": "fixed-width",
+              "width": 900,
+              "content": "多模态大模型正在打破文字、图像、视频之间的边界，开启全新的交互范式",
+              "fontFamily": "Inter",
+              "fontSize": 37,
+              "fontWeight": "500"
+            },
+            {
+              "type": "text",
+              "id": "ZXntk",
+              "name": "caption",
+              "fill": "$white-60",
+              "content": "2026 · AI 前沿观察",
+              "fontFamily": "Inter",
+              "fontSize": 27,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "lbjne",
+      "x": 4040,
+      "y": 0,
+      "name": "T03 ImageGrid",
+      "width": 1920,
+      "height": 1080,
+      "fill": "$bg",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": [
+        40,
+        50
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "RYGCB",
+          "name": "header",
+          "width": "fill_container",
+          "gap": 20,
+          "alignItems": "end",
+          "children": [
+            {
+              "type": "text",
+              "id": "cTou7",
+              "name": "htitle",
+              "fill": "$primary",
+              "content": "四大核心能力",
+              "fontFamily": "Inter",
+              "fontSize": 69,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "DDcKR",
+              "name": "hsub",
+              "fill": "$text-50",
+              "content": "现代 AI 系统的基础技术栈",
+              "fontFamily": "Inter",
+              "fontSize": 29,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "OM8t4",
+          "name": "grid",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "children": [
+            {
+              "type": "frame",
+              "id": "k98c5",
+              "name": "row1",
+              "width": "fill_container",
+              "height": "fill_container",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "2Sllg",
+                  "name": "card1",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-light"
+                  },
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "t7ATi",
+                      "name": "img1",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "markusspiske",
+                        "link": "https://unsplash.com/@markusspiske",
+                        "author": "Markus Spiske"
+                      },
+                      "width": 405,
+                      "height": "fill_container",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1552120476-9ee56c8611f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI3NTR8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "xmjcl",
+                      "name": "txt1",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": [
+                        20,
+                        22
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "H3rs2",
+                          "name": "t1a",
+                          "fill": "$primary",
+                          "content": "自然语言处理",
+                          "fontFamily": "Inter",
+                          "fontSize": 33,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ZQxgm",
+                          "name": "t1b",
+                          "fill": "$text-65",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "理解和生成人类语言，支撑对话、翻译、摘要等场景",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 25,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Weahg",
+                  "name": "card2",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-light"
+                  },
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "sUjOz",
+                      "name": "img2",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "loganvoss",
+                        "link": "https://unsplash.com/@loganvoss",
+                        "author": "Logan Voss"
+                      },
+                      "width": 405,
+                      "height": "fill_container",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1767478913310-5214ed8e4ad5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI3NTV8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "700xc",
+                      "name": "txt2",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": [
+                        20,
+                        22
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Xlddo",
+                          "name": "t2a",
+                          "fill": "$primary",
+                          "content": "计算机视觉",
+                          "fontFamily": "Inter",
+                          "fontSize": 33,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "PIKYH",
+                          "name": "t2b",
+                          "fill": "$text-65",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "图像识别、目标检测、视频理解，赋能自动驾驶与安防",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 25,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "5eyMv",
+              "name": "row2",
+              "width": "fill_container",
+              "height": "fill_container",
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "i5kQC",
+                  "name": "card3",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-light"
+                  },
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "xvyDK",
+                      "name": "img3",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "tychicus",
+                        "link": "https://unsplash.com/@tychicus",
+                        "author": "Amos K"
+                      },
+                      "width": 405,
+                      "height": "fill_container",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1763788427851-e329a047356b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI3NTZ8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "2c3dI",
+                      "name": "txt3",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": [
+                        20,
+                        22
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "jgRSj",
+                          "name": "t3a",
+                          "fill": "$primary",
+                          "content": "强化学习",
+                          "fontFamily": "Inter",
+                          "fontSize": 33,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "sjAUu",
+                          "name": "t3b",
+                          "fill": "$text-65",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "通过试错与奖励机制学习最优策略，从游戏到机器人控制",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 25,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "x1cyV",
+                  "name": "card4",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "cornerRadius": 12,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "$border-light"
+                  },
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "m1pX9",
+                      "name": "img4",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "coopery",
+                        "link": "https://unsplash.com/@coopery",
+                        "author": "Mohamed Nohassi"
+                      },
+                      "width": 405,
+                      "height": "fill_container",
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1684369586188-bad829e7c51f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI3NTZ8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "skATH",
+                      "name": "txt4",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "padding": [
+                        20,
+                        22
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "MKfcC",
+                          "name": "t4a",
+                          "fill": "$primary",
+                          "content": "多模态融合",
+                          "fontFamily": "Inter",
+                          "fontSize": 33,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "IQ4Lf",
+                          "name": "t4b",
+                          "fill": "$text-65",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "跨越文本、图像、音频的统一理解与生成能力",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 25,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "QWnfP",
+      "x": 6060,
+      "y": 0,
+      "name": "T04 QuotePortrait",
+      "width": 1920,
+      "height": 1080,
+      "fill": "$bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "jDKqA",
+          "x": 70,
+          "y": 60,
+          "name": "deco",
+          "fill": "#E1705514",
+          "content": "“",
+          "fontFamily": "Playfair Display",
+          "fontSize": 220,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "iFW8e",
+          "x": 0,
+          "y": 0,
+          "name": "content",
+          "width": 1920,
+          "height": 1080,
+          "layout": "vertical",
+          "gap": 48,
+          "padding": [
+            80,
+            90
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "ddZSe",
+              "name": "quoteBlock",
+              "width": 1400,
+              "stroke": {
+                "align": "inside",
+                "thickness": {
+                  "left": 4
+                },
+                "fill": "$accent"
+              },
+              "layout": "vertical",
+              "padding": [
+                0,
+                0,
+                0,
+                40
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "OG55M",
+                  "name": "quoteText",
+                  "fill": "$text",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "人工智能不会取代人类，但善用 AI 的人会取代不用 AI 的人。这不是威胁，而是一次前所未有的能力放大器。",
+                  "lineHeight": 1.55,
+                  "fontFamily": "Inter",
+                  "fontSize": 47,
+                  "fontWeight": "600",
+                  "fontStyle": "italic"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "3X9eb",
+              "name": "authorSection",
+              "gap": 20,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "L2SDc",
+                  "name": "portrait",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "godz1",
+                    "link": "https://unsplash.com/@godz1",
+                    "author": "Godz1"
+                  },
+                  "clip": true,
+                  "width": 80,
+                  "height": 80,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "https://images.unsplash.com/photo-1701463206030-fd8a77b61698?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI3ODR8&ixlib=rb-4.1.0&q=80&w=1080",
+                    "mode": "fill"
+                  },
+                  "cornerRadius": 40,
+                  "stroke": {
+                    "align": "outside",
+                    "thickness": 3,
+                    "fill": "$accent"
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "BxzXf",
+                  "name": "authorInfo",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "BKPhz",
+                      "name": "authorName",
+                      "fill": "$primary",
+                      "content": "李明远",
+                      "fontFamily": "Inter",
+                      "fontSize": 35,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "phonc",
+                      "name": "authorRole",
+                      "fill": "$text-55",
+                      "content": "清华大学计算机系教授 · AI 研究院院长",
+                      "fontFamily": "Inter",
+                      "fontSize": 27,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "SGCzC",
+      "x": 0,
+      "y": 1180,
+      "name": "T05 SplitDataViz",
+      "width": 1920,
+      "height": 1080,
+      "fill": "$bg",
+      "layout": "vertical",
+      "gap": 40,
+      "padding": [
+        60,
+        70
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "Adqmv",
+          "name": "header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 8,
+          "children": [
+            {
+              "type": "text",
+              "id": "jg1vY",
+              "name": "titleText",
+              "fill": "$primary",
+              "content": "AI 应用渗透率",
+              "fontFamily": "Inter",
+              "fontSize": 69,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "rCDtU",
+              "name": "subtitleText",
+              "fill": "$text-50",
+              "content": "各行业 AI 技术采纳程度（2026年）",
+              "fontFamily": "Inter",
+              "fontSize": 29,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "zksBX",
+          "name": "main",
+          "width": "fill_container",
+          "height": "fill_container",
+          "gap": 48,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "MVKqj",
+              "name": "leftCol",
+              "width": 960,
+              "layout": "vertical",
+              "gap": 22,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "3Kn2u",
+                  "name": "bar1",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bcEpb",
+                      "name": "bar1Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "i0nqt",
+                          "name": "bar1Label",
+                          "fill": "$text",
+                          "content": "金融科技",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "sMmFM",
+                          "name": "bar1Val",
+                          "fill": "$primary",
+                          "content": "87%",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "f5z9w",
+                      "name": "bar1Track",
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "$bar-track",
+                      "cornerRadius": 9,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 9,
+                          "id": "TH7vE",
+                          "x": 0,
+                          "y": 0,
+                          "name": "bar1Fill",
+                          "fill": "$accent",
+                          "width": 835,
+                          "height": 18
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "2EGEJ",
+                  "name": "bar2",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "xIJ3O",
+                      "name": "bar2Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pBHyX",
+                          "name": "bar2Label",
+                          "fill": "$text",
+                          "content": "医疗健康",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "CwcX4",
+                          "name": "bar2Val",
+                          "fill": "$primary",
+                          "content": "72%",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Z6v7A",
+                      "name": "bar2Track",
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "$bar-track",
+                      "cornerRadius": 9,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 9,
+                          "id": "4z5XX",
+                          "x": 0,
+                          "y": 0,
+                          "name": "bar2Fill",
+                          "fill": "$accent",
+                          "width": 691,
+                          "height": 18
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "PXRKD",
+                  "name": "bar3",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "M74Ys",
+                      "name": "bar3Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "TflJl",
+                          "name": "bar3Label",
+                          "fill": "$text",
+                          "content": "智能制造",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "hQajt",
+                          "name": "bar3Val",
+                          "fill": "$primary",
+                          "content": "65%",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "RR6IZ",
+                      "name": "bar3Track",
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "$bar-track",
+                      "cornerRadius": 9,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 9,
+                          "id": "u4cNR",
+                          "x": 0,
+                          "y": 0,
+                          "name": "bar3Fill",
+                          "fill": "$accent",
+                          "width": 624,
+                          "height": 18
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Q9rgU",
+                  "name": "bar4",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "omtAF",
+                      "name": "bar4Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "SxO88",
+                          "name": "bar4Label",
+                          "fill": "$text",
+                          "content": "教育培训",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HkKpW",
+                          "name": "bar4Val",
+                          "fill": "$primary",
+                          "content": "58%",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "oq9Ow",
+                      "name": "bar4Track",
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "$bar-track",
+                      "cornerRadius": 9,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 9,
+                          "id": "Pd1Zf",
+                          "x": 0,
+                          "y": 0,
+                          "name": "bar4Fill",
+                          "fill": "$accent",
+                          "width": 557,
+                          "height": 18
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Yfcqz",
+                  "name": "bar5",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "IUSLB",
+                      "name": "bar5Row",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "XMeVN",
+                          "name": "bar5Label",
+                          "fill": "$text",
+                          "content": "文化创意",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "T2xSl",
+                          "name": "bar5Val",
+                          "fill": "$primary",
+                          "content": "43%",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "700"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WDD6T",
+                      "name": "bar5Track",
+                      "width": "fill_container",
+                      "height": 18,
+                      "fill": "$bar-track",
+                      "cornerRadius": 9,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 9,
+                          "id": "fUE0t",
+                          "x": 0,
+                          "y": 0,
+                          "name": "bar5Fill",
+                          "fill": "$accent",
+                          "width": 413,
+                          "height": 18
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "DTswP",
+              "name": "rightCol",
+              "metadata": {
+                "type": "unsplash",
+                "username": "christian2205",
+                "link": "https://unsplash.com/@christian2205",
+                "author": "Christian Ruehmer"
+              },
+              "clip": true,
+              "width": "fill_container",
+              "height": 640,
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "https://images.unsplash.com/photo-1704206942171-a492308ca218?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI4Mjd8&ixlib=rb-4.1.0&q=80&w=1080",
+                "mode": "fill"
+              },
+              "cornerRadius": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "PdBvf",
+      "x": 2020,
+      "y": 1180,
+      "name": "T06 TimelineMedia",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$bg",
+      "layout": "vertical",
+      "padding": [
+        50,
+        70
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "Hyy4F",
+          "name": "header6",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 6,
+          "padding": [
+            0,
+            0,
+            10,
+            0
+          ],
+          "children": [
+            {
+              "type": "text",
+              "id": "qcaGA",
+              "name": "title6",
+              "fill": "$primary",
+              "content": "AI 发展里程碑",
+              "fontFamily": "Inter",
+              "fontSize": 65,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "U5wEa",
+              "name": "sub6",
+              "fill": "$text-50",
+              "content": "从学术论文到改变世界，关键转折点回顾",
+              "fontFamily": "Inter",
+              "fontSize": 29,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "XugtC",
+          "name": "mainRow6",
+          "width": "fill_container",
+          "height": "fill_container",
+          "gap": 40,
+          "padding": [
+            10,
+            0
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "zuoLW",
+              "name": "Timeline",
+              "width": "fill_container",
+              "height": "fill_container",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "7x0H3",
+                  "name": "Event 1",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "MNYKo",
+                      "name": "thumb1",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "mariolagr",
+                        "link": "https://unsplash.com/@mariolagr",
+                        "author": "MARIOLA GROBELSKA"
+                      },
+                      "clip": true,
+                      "width": 100,
+                      "height": 100,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1641474023059-d6bfd1b537c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI2ODd8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": "$accent"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "KfEip",
+                      "name": "conn1",
+                      "width": 20,
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "2jKeY",
+                          "name": "dot1",
+                          "fill": "$accent",
+                          "width": 14,
+                          "height": 14
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "GVuBD",
+                          "name": "line1",
+                          "fill": "$accent-15",
+                          "width": 2,
+                          "height": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "OaG5o",
+                      "name": "text1",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        0,
+                        0,
+                        14,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "eUydJ",
+                          "name": "lbl1",
+                          "fill": "$primary",
+                          "content": "2017 · Transformer 诞生",
+                          "fontFamily": "Inter",
+                          "fontSize": 35,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ZZTfI",
+                          "name": "desc1",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Google 发表 Attention Is All You Need，自注意力机制取代 RNN 成为主流架构",
+                          "lineHeight": 1.45,
+                          "fontFamily": "Inter",
+                          "fontSize": 27,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "qexeH",
+                          "name": "det1",
+                          "fill": "$text-50",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "论文被引用超 12 万次，催生 BERT、GPT 等后续模型",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 25,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Xwroy",
+                          "name": "tags1",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "wpffH",
+                              "name": "tag1a",
+                              "fill": "$accent-10",
+                              "cornerRadius": 10,
+                              "padding": [
+                                2,
+                                10
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "PgXmg",
+                                  "name": "tag1aT",
+                                  "fill": "$accent",
+                                  "content": "NLP",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 21,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ZnUkX",
+                              "name": "tag1b",
+                              "fill": "$accent-10",
+                              "cornerRadius": 10,
+                              "padding": [
+                                2,
+                                10
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "a1uk5",
+                                  "name": "tag1bT",
+                                  "fill": "$accent",
+                                  "content": "架构革新",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 21,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yluOK",
+                  "name": "Event 2",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "YRQAx",
+                      "name": "thumb2",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "boliviainteligente",
+                        "link": "https://unsplash.com/@boliviainteligente",
+                        "author": "BoliviaInteligente"
+                      },
+                      "clip": true,
+                      "width": 100,
+                      "height": 100,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1761223956832-a1e341babb92?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI3MDJ8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": "$accent"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "gV5DB",
+                      "name": "conn2",
+                      "width": 20,
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "10H77",
+                          "name": "dot2",
+                          "fill": "$accent",
+                          "width": 14,
+                          "height": 14
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "cGepB",
+                          "name": "line2",
+                          "fill": "$accent-15",
+                          "width": 2,
+                          "height": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "sIgbn",
+                      "name": "text2",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        0,
+                        0,
+                        14,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Lv23G",
+                          "name": "lbl2",
+                          "fill": "$primary",
+                          "content": "2022 · ChatGPT 爆发",
+                          "fontFamily": "Inter",
+                          "fontSize": 35,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "7cwZg",
+                          "name": "desc2",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "OpenAI 发布 ChatGPT，两个月用户突破一亿，AI 进入大众视野",
+                          "lineHeight": 1.45,
+                          "fontFamily": "Inter",
+                          "fontSize": 27,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "WS4pV",
+                          "name": "det2",
+                          "fill": "$text-50",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "推动全球 AI 投资激增 300%，微软追加 100 亿美元投资",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 25,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Fk9ek",
+                          "name": "tags2",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "9pEvS",
+                              "name": "tag2a",
+                              "fill": "$accent-10",
+                              "cornerRadius": 10,
+                              "padding": [
+                                2,
+                                10
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "W3xxP",
+                                  "name": "tag2aT",
+                                  "fill": "$accent",
+                                  "content": "消费级AI",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 21,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "uqfP8",
+                              "name": "tag2b",
+                              "fill": "$accent-10",
+                              "cornerRadius": 10,
+                              "padding": [
+                                2,
+                                10
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "USPA3",
+                                  "name": "tag2bT",
+                                  "fill": "$accent",
+                                  "content": "现象级",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 21,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "byFqp",
+                  "name": "Event 3",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "P2dRs",
+                      "name": "thumb3",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "julee_juu",
+                        "link": "https://unsplash.com/@julee_juu",
+                        "author": "Julee Juu"
+                      },
+                      "clip": true,
+                      "width": 100,
+                      "height": 100,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1675551297974-91a88a15bd48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI3MjN8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": "$accent"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "A3dOD",
+                      "name": "conn3",
+                      "width": 20,
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "vwJbQ",
+                          "name": "dot3",
+                          "fill": "$accent",
+                          "width": 14,
+                          "height": 14
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "qJMsw",
+                          "name": "line3",
+                          "fill": "$accent-15",
+                          "width": 2,
+                          "height": "fill_container"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "El5EZ",
+                      "name": "text3",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        0,
+                        0,
+                        14,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "XiCdD",
+                          "name": "lbl3",
+                          "fill": "$primary",
+                          "content": "2024 · 多模态元年",
+                          "fontFamily": "Inter",
+                          "fontSize": 35,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "jvfat",
+                          "name": "desc3",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "GPT-4o、Claude 3.5、Gemini 实现文本+图像+音频统一理解",
+                          "lineHeight": 1.45,
+                          "fontFamily": "Inter",
+                          "fontSize": 27,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "3D5fq",
+                          "name": "det3",
+                          "fill": "$text-50",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "视觉推理准确率突破 90%，实时语音对话延迟降至 300ms",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 25,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "sr932",
+                          "name": "tags3",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "xEgs9",
+                              "name": "tag3a",
+                              "fill": "$accent-10",
+                              "cornerRadius": 10,
+                              "padding": [
+                                2,
+                                10
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "yJ28Q",
+                                  "name": "tag3aT",
+                                  "fill": "$accent",
+                                  "content": "多模态",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 21,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "btLbg",
+                              "name": "tag3b",
+                              "fill": "$accent-10",
+                              "cornerRadius": 10,
+                              "padding": [
+                                2,
+                                10
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "mhPG5",
+                                  "name": "tag3bT",
+                                  "fill": "$accent",
+                                  "content": "实时交互",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 21,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "2w745",
+                  "name": "Event 4",
+                  "width": "fill_container",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "KhL0u",
+                      "name": "thumb4",
+                      "metadata": {
+                        "type": "unsplash",
+                        "username": "hauntedeyes",
+                        "link": "https://unsplash.com/@hauntedeyes",
+                        "author": "Lukas"
+                      },
+                      "clip": true,
+                      "width": 100,
+                      "height": 100,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1525338078858-d762b5e32f2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI3MzV8&ixlib=rb-4.1.0&q=80&w=1080",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 12,
+                      "stroke": {
+                        "thickness": 2,
+                        "fill": "$accent"
+                      }
+                    },
+                    {
+                      "type": "frame",
+                      "id": "DOjUt",
+                      "name": "conn4",
+                      "width": 20,
+                      "layout": "vertical",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "OmK7Z",
+                          "name": "dot4",
+                          "fill": "$accent",
+                          "width": 14,
+                          "height": 14
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fLRUl",
+                      "name": "text4",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "padding": [
+                        0,
+                        0,
+                        14,
+                        0
+                      ],
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "vaHLM",
+                          "name": "lbl4",
+                          "fill": "$primary",
+                          "content": "2026 · Agent 时代",
+                          "fontFamily": "Inter",
+                          "fontSize": 35,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "F0bLu",
+                          "name": "desc4",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "AI Agent 自主完成复杂任务链，编程、研究、运营全面渗透",
+                          "lineHeight": 1.45,
+                          "fontFamily": "Inter",
+                          "fontSize": 27,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "cu423",
+                          "name": "det4",
+                          "fill": "$text-50",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "企业 Agent 采纳率达 65%，人机协作成为新常态",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 25,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "zy4bX",
+                          "name": "tags4",
+                          "gap": 8,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "k99FT",
+                              "name": "tag4a",
+                              "fill": "$accent-10",
+                              "cornerRadius": 10,
+                              "padding": [
+                                2,
+                                10
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Xr973",
+                                  "name": "tag4aT",
+                                  "fill": "$accent",
+                                  "content": "Agent",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 21,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "T6bqP",
+                              "name": "tag4b",
+                              "fill": "$accent-10",
+                              "cornerRadius": 10,
+                              "padding": [
+                                2,
+                                10
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "SjhG5",
+                                  "name": "tag4bT",
+                                  "fill": "$accent",
+                                  "content": "自主决策",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 21,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "LIcdr",
+              "name": "Side Image",
+              "metadata": {
+                "type": "unsplash",
+                "username": "steve_j",
+                "link": "https://unsplash.com/@steve_j",
+                "author": "Steve Johnson"
+              },
+              "clip": true,
+              "width": 500,
+              "height": "fill_container",
+              "fill": {
+                "type": "image",
+                "enabled": true,
+                "url": "https://images.unsplash.com/photo-1633471908928-7ae447bbad7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTI2NzF8&ixlib=rb-4.1.0&q=80&w=1080",
+                "mode": "fill"
+              },
+              "cornerRadius": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Mxv2Q",
+      "x": 4040,
+      "y": 1180,
+      "name": "T07 MagazineSpread",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "ojWmL",
+          "x": 40,
+          "y": 40,
+          "name": "Left Image",
+          "metadata": {
+            "type": "unsplash",
+            "username": "matgocman",
+            "link": "https://unsplash.com/@matgocman",
+            "author": "Matúš Gocman"
+          },
+          "clip": true,
+          "width": 1056,
+          "height": 1000,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "https://images.unsplash.com/photo-1720969834474-e0752e2dde3c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTIxMzN8&ixlib=rb-4.1.0&q=80&w=1080",
+            "mode": "fill"
+          },
+          "cornerRadius": 16
+        },
+        {
+          "type": "frame",
+          "id": "WvfvR",
+          "x": 1114,
+          "y": 0,
+          "name": "Right Content",
+          "width": 806,
+          "height": 1080,
+          "layout": "vertical",
+          "gap": 16,
+          "padding": [
+            70,
+            60,
+            70,
+            30
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 2,
+              "id": "uXpD9",
+              "name": "accentBar",
+              "fill": "$accent",
+              "width": 40,
+              "height": 4
+            },
+            {
+              "type": "text",
+              "id": "RjEE5",
+              "name": "titleText",
+              "fill": "$primary",
+              "content": "AI 如何重塑内容创作",
+              "lineHeight": 1.2,
+              "fontFamily": "Inter",
+              "fontSize": 61,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "GoJh6",
+              "name": "subtitleText",
+              "fill": "$text-55",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "从辅助工具到创作伙伴，AIGC 正在改变每一个创作者的工作流",
+              "lineHeight": 1.5,
+              "fontFamily": "Inter",
+              "fontSize": 31,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "tSX25",
+              "name": "bulletsContainer",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "padding": [
+                16,
+                0,
+                0,
+                0
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "5NXYG",
+                  "name": "b1",
+                  "width": "fill_container",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "ou91a",
+                      "name": "dot1",
+                      "fill": "$accent",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "text",
+                      "id": "05tre",
+                      "name": "txt1",
+                      "fill": "$text-75",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "文本生成：从大纲到完整文章，AI 可以在数秒内完成初稿",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 29,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mpQt9",
+                  "name": "b2",
+                  "width": "fill_container",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "G2g6l",
+                      "name": "dot2",
+                      "fill": "$accent",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "text",
+                      "id": "s3iNc",
+                      "name": "txt2",
+                      "fill": "$text-75",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "图像创作：Midjourney、DALL-E 让非设计师也能产出专业级视觉",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 29,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "BdVzr",
+                  "name": "b3",
+                  "width": "fill_container",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "XaMc4",
+                      "name": "dot3",
+                      "fill": "$accent",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "text",
+                      "id": "j71cU",
+                      "name": "txt3",
+                      "fill": "$text-75",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "视频制作：自动字幕、智能剪辑、AI 配音降低 90% 的制作门槛",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 29,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "uKdsN",
+                  "name": "b4",
+                  "width": "fill_container",
+                  "gap": 14,
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "AjkHu",
+                      "name": "dot4",
+                      "fill": "$accent",
+                      "width": 8,
+                      "height": 8
+                    },
+                    {
+                      "type": "text",
+                      "id": "IjxCQ",
+                      "name": "txt4",
+                      "fill": "$text-75",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "音乐创作：Suno、Udio 实现一句描述生成完整歌曲",
+                      "lineHeight": 1.55,
+                      "fontFamily": "Inter",
+                      "fontSize": 29,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "K8TNz",
+      "x": 6060,
+      "y": 1180,
+      "name": "T08 StepByStep",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$bg",
+      "layout": "vertical",
+      "padding": [
+        50,
+        60
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "p9aOG",
+          "name": "header8",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 6,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "CXXJB",
+              "name": "h8title",
+              "fill": "$primary",
+              "content": "AI 产品落地三步法",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 65,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "udTLu",
+              "name": "h8sub",
+              "fill": "$text-50",
+              "content": "从构想到规模化部署的完整路径",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 29,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "ScD8R",
+          "name": "stepsRow",
+          "width": "fill_container",
+          "height": "fill_container",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "GK23X",
+              "name": "step1",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "h7ESf",
+                  "name": "img1",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "fl__q",
+                    "link": "https://unsplash.com/@fl__q",
+                    "author": "Taiki Ishikawa"
+                  },
+                  "clip": true,
+                  "width": 270,
+                  "height": 270,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "https://images.unsplash.com/photo-1631486508786-db15cc28296e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTIxNzN8&ixlib=rb-4.1.0&q=80&w=1080",
+                    "mode": "fill"
+                  },
+                  "cornerRadius": 135,
+                  "stroke": {
+                    "thickness": 3,
+                    "fill": "$accent-15"
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "ZbEAg",
+                  "name": "badge1",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "$accent",
+                  "cornerRadius": 18,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UkspH",
+                      "name": "num1",
+                      "fill": "$white",
+                      "content": "1",
+                      "fontFamily": "Inter",
+                      "fontSize": 21,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "TyBbS",
+                  "name": "lbl1",
+                  "fill": "$primary",
+                  "content": "需求分析",
+                  "fontFamily": "Inter",
+                  "fontSize": 33,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "icVFf",
+                  "name": "desc1",
+                  "fill": "$text-65",
+                  "textGrowth": "fixed-width",
+                  "width": 350,
+                  "content": "明确业务痛点，评估 AI 可解决的具体问题与预期 ROI",
+                  "lineHeight": 1.45,
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 25,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "Kw8s1",
+                  "name": "met1",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-light"
+                  },
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    20
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kE023",
+                      "name": "metV1",
+                      "fill": "$accent",
+                      "content": "2-4周",
+                      "fontFamily": "Inter",
+                      "fontSize": 31,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FpNh7",
+                      "name": "metL1",
+                      "fill": "$text-50",
+                      "content": "平均周期",
+                      "fontFamily": "Inter",
+                      "fontSize": 21,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "BuR4n",
+              "name": "arrow1",
+              "fill": "$accent",
+              "content": "→",
+              "fontFamily": "Inter",
+              "fontSize": 64,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "QvYWo",
+              "name": "step2",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "DZW7n",
+                  "name": "img2",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "rsdiz",
+                    "link": "https://unsplash.com/@rsdiz",
+                    "author": "Muhammad Rosyid Izzulkhaq"
+                  },
+                  "clip": true,
+                  "width": 270,
+                  "height": 270,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "https://images.unsplash.com/photo-1604536264507-020ce894daf1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTIxODV8&ixlib=rb-4.1.0&q=80&w=1080",
+                    "mode": "fill"
+                  },
+                  "cornerRadius": 135,
+                  "stroke": {
+                    "thickness": 3,
+                    "fill": "$accent-15"
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "Oq9GQ",
+                  "name": "badge2",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "$accent",
+                  "cornerRadius": 18,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "BAMgb",
+                      "name": "num2",
+                      "fill": "$white",
+                      "content": "2",
+                      "fontFamily": "Inter",
+                      "fontSize": 21,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "b2UKK",
+                  "name": "lbl2",
+                  "fill": "$primary",
+                  "content": "原型验证",
+                  "fontFamily": "Inter",
+                  "fontSize": 33,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "onP2n",
+                  "name": "desc2",
+                  "fill": "$text-65",
+                  "textGrowth": "fixed-width",
+                  "width": 350,
+                  "content": "搭建最小可行产品，用真实数据测试模型效果与用户反馈",
+                  "lineHeight": 1.45,
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 25,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "XgoWZ",
+                  "name": "met2",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-light"
+                  },
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    20
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Dxqob",
+                      "name": "metV2",
+                      "fill": "$accent",
+                      "content": "85%",
+                      "fontFamily": "Inter",
+                      "fontSize": 31,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "JsYbz",
+                      "name": "metL2",
+                      "fill": "$text-50",
+                      "content": "验证通过率",
+                      "fontFamily": "Inter",
+                      "fontSize": 21,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "Tx7O1",
+              "name": "arrow2",
+              "fill": "$accent",
+              "content": "→",
+              "fontFamily": "Inter",
+              "fontSize": 64,
+              "fontWeight": "700"
+            },
+            {
+              "type": "frame",
+              "id": "fqARn",
+              "name": "step3",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 12,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "tjn2t",
+                  "name": "img3",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "bekkybekks",
+                    "link": "https://unsplash.com/@bekkybekks",
+                    "author": "Bekky Bekks"
+                  },
+                  "clip": true,
+                  "width": 270,
+                  "height": 270,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "https://images.unsplash.com/photo-1578531463682-cc6e1917acbb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTIxODl8&ixlib=rb-4.1.0&q=80&w=1080",
+                    "mode": "fill"
+                  },
+                  "cornerRadius": 135,
+                  "stroke": {
+                    "thickness": 3,
+                    "fill": "$accent-15"
+                  }
+                },
+                {
+                  "type": "frame",
+                  "id": "Dqk7B",
+                  "name": "badge3",
+                  "width": 36,
+                  "height": 36,
+                  "fill": "$accent",
+                  "cornerRadius": 18,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "JUjZs",
+                      "name": "num3",
+                      "fill": "$white",
+                      "content": "3",
+                      "fontFamily": "Inter",
+                      "fontSize": 21,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "1WB0o",
+                  "name": "lbl3",
+                  "fill": "$primary",
+                  "content": "规模部署",
+                  "fontFamily": "Inter",
+                  "fontSize": 33,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "1bcEa",
+                  "name": "desc3",
+                  "fill": "$text-65",
+                  "textGrowth": "fixed-width",
+                  "width": 350,
+                  "content": "优化推理性能，建立 A/B 测试与监控体系，逐步扩大覆盖",
+                  "lineHeight": 1.45,
+                  "textAlign": "center",
+                  "fontFamily": "Inter",
+                  "fontSize": 25,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "wjZQ0",
+                  "name": "met3",
+                  "cornerRadius": 8,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "$border-light"
+                  },
+                  "gap": 6,
+                  "padding": [
+                    8,
+                    20
+                  ],
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "2i8ud",
+                      "name": "metV3",
+                      "fill": "$accent",
+                      "content": "3-6月",
+                      "fontFamily": "Inter",
+                      "fontSize": 31,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "TdVwx",
+                      "name": "metL3",
+                      "fill": "$text-50",
+                      "content": "上线周期",
+                      "fontFamily": "Inter",
+                      "fontSize": 21,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "2zneI",
+          "name": "summaryBar",
+          "width": "fill_container",
+          "stroke": {
+            "thickness": {
+              "top": 1
+            },
+            "fill": "$border-light"
+          },
+          "padding": [
+            14,
+            0
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "wuIwY",
+              "name": "summaryTxt",
+              "fill": "$text-55",
+              "content": "关键原则：先小后大、数据驱动、持续迭代 — 避免一步到位的完美主义陷阱",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 27,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "a49QW",
+      "x": 0,
+      "y": 2360,
+      "name": "T09 BigNumber",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#000000",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "EGDmr",
+          "x": 0,
+          "y": 0,
+          "name": "BG Image",
+          "metadata": {
+            "type": "unsplash",
+            "username": "thetemasobol",
+            "link": "https://unsplash.com/@thetemasobol",
+            "author": "Artem Sobolevsky"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "https://images.unsplash.com/photo-1547283076-734b2fc83032?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTIyNDR8&ixlib=rb-4.1.0&q=80&w=1080",
+            "mode": "fill"
+          }
+        },
+        {
+          "type": "rectangle",
+          "id": "iUePD",
+          "x": 0,
+          "y": 0,
+          "name": "Overlay",
+          "fill": "$overlay-dark",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "type": "frame",
+          "id": "blZTh",
+          "x": 0,
+          "y": 0,
+          "name": "Content",
+          "width": 1920,
+          "height": 1080,
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "trQuA",
+              "name": "numRow",
+              "gap": 8,
+              "alignItems": "end",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "shhaE",
+                  "name": "bigNum",
+                  "fill": "$white",
+                  "content": "86",
+                  "lineHeight": 1,
+                  "fontFamily": "Inter",
+                  "fontSize": 165,
+                  "fontWeight": "900",
+                  "letterSpacing": -4
+                },
+                {
+                  "type": "text",
+                  "id": "N7h7J",
+                  "name": "suffix9",
+                  "fill": "$white-88",
+                  "content": "%",
+                  "fontFamily": "Inter",
+                  "fontSize": 57,
+                  "fontWeight": "700"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "CxyaL",
+              "name": "label9",
+              "fill": "$white-88",
+              "content": "企业已将 AI 纳入核心战略",
+              "fontFamily": "Inter",
+              "fontSize": 41,
+              "fontWeight": "600",
+              "letterSpacing": 2
+            },
+            {
+              "type": "text",
+              "id": "qaEok",
+              "name": "desc9",
+              "fill": "$white-60",
+              "textGrowth": "fixed-width",
+              "width": 800,
+              "content": "根据麦肯锡 2026 全球企业 AI 调研报告，超过八成企业已在至少一个核心业务流程中部署了 AI 技术",
+              "lineHeight": 1.5,
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 29,
+              "fontWeight": "normal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "tinsT",
+      "x": 2020,
+      "y": 2360,
+      "name": "T10 DualCompare",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$bg",
+      "layout": "vertical",
+      "padding": [
+        44,
+        56
+      ],
+      "children": [
+        {
+          "type": "frame",
+          "id": "WnYQQ",
+          "name": "hdr10",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 4,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "9R8No",
+              "name": "ttl10",
+              "fill": "$primary",
+              "content": "开源 vs 闭源模型",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 61,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "Bi5kM",
+              "name": "sub10",
+              "fill": "$text-50",
+              "content": "两种路线的核心差异与适用场景对比",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 27,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "LB1d9",
+          "name": "mainRow",
+          "width": "fill_container",
+          "height": "fill_container",
+          "gap": 28,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "CDAxU",
+              "name": "leftCol",
+              "clip": true,
+              "width": "fill_container",
+              "height": "fill_container",
+              "cornerRadius": 12,
+              "stroke": {
+                "thickness": 1,
+                "fill": "$border-light"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "UEGaI",
+                  "name": "Left Image",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "kimothorick",
+                    "link": "https://unsplash.com/@kimothorick",
+                    "author": "Rick Muigo"
+                  },
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 180,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "https://images.unsplash.com/photo-1565229284535-2cbbe3049123?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTIyNzV8&ixlib=rb-4.1.0&q=80&w=1080",
+                    "mode": "fill"
+                  },
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "k5eqp",
+                      "x": 726,
+                      "y": 146,
+                      "name": "leftStatBadge",
+                      "fill": "#000000A6",
+                      "cornerRadius": 8,
+                      "gap": 4,
+                      "padding": [
+                        4,
+                        12
+                      ],
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "nH0fr",
+                          "name": "leftStatVal",
+                          "fill": "$white",
+                          "content": "70B+",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ptv4s",
+                          "name": "leftStatLbl",
+                          "fill": "$white-60",
+                          "content": "最大参数",
+                          "fontFamily": "Inter",
+                          "fontSize": 19,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NLMHQ",
+                  "name": "leftContent",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "padding": [
+                    20,
+                    24
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "jQzEP",
+                      "name": "leftTitle",
+                      "fill": "$primary",
+                      "content": "开源模型",
+                      "fontFamily": "Inter",
+                      "fontSize": 37,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "FVLd2",
+                      "name": "leftSub",
+                      "fill": "$text-50",
+                      "content": "LLaMA · Qwen · DeepSeek",
+                      "fontFamily": "Inter",
+                      "fontSize": 25,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "PQln5",
+                      "name": "leftItems",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "7MEg6",
+                          "name": "li1",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "✦ 完全可控，支持私有化部署和微调",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "DvfcZ",
+                          "name": "li2",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "✦ 社区生态活跃，模型变体迭代极快",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "toIQb",
+                          "name": "li3",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "✦ 数据不出境，满足金融/政务合规需求",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Ao7I2",
+                          "name": "li4",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "✦ 推理成本可控，大规模调用更经济",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "LougH",
+                          "name": "li5",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "△ 需要专业团队运维，部署门槛较高",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "FjjCh",
+              "name": "vsBadge",
+              "width": 52,
+              "height": 52,
+              "fill": "$accent",
+              "cornerRadius": 26,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "1qdG7",
+                  "name": "vsText",
+                  "fill": "$white",
+                  "content": "VS",
+                  "fontFamily": "Inter",
+                  "fontSize": 25,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "pNOks",
+              "name": "rightCol",
+              "clip": true,
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "$accent-06",
+              "cornerRadius": 12,
+              "stroke": {
+                "thickness": 1,
+                "fill": "$border-light"
+              },
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "lbEs9",
+                  "name": "Right Image",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "wocintechchat",
+                    "link": "https://unsplash.com/@wocintechchat",
+                    "author": "Christina @ wocintechchat.com M"
+                  },
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 180,
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "https://images.unsplash.com/photo-1573164713988-8665fc963095?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTIyOTN8&ixlib=rb-4.1.0&q=80&w=1080",
+                    "mode": "fill"
+                  },
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "sQ0gN",
+                      "x": 726,
+                      "y": 146,
+                      "name": "rightStatBadge",
+                      "fill": "#000000A6",
+                      "cornerRadius": 8,
+                      "gap": 4,
+                      "padding": [
+                        4,
+                        12
+                      ],
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "gEbwd",
+                          "name": "rightStatVal",
+                          "fill": "$white",
+                          "content": "SOTA",
+                          "fontFamily": "Inter",
+                          "fontSize": 29,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "JpxIb",
+                          "name": "rightStatLbl",
+                          "fill": "$white-60",
+                          "content": "性能基准",
+                          "fontFamily": "Inter",
+                          "fontSize": 19,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "9oUME",
+                  "name": "rightContent",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "padding": [
+                    20,
+                    24
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "V4iYB",
+                      "name": "rTitle",
+                      "fill": "$primary",
+                      "content": "闭源模型",
+                      "fontFamily": "Inter",
+                      "fontSize": 37,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Poleq",
+                      "name": "rSub",
+                      "fill": "$text-50",
+                      "content": "GPT-4o · Claude · Gemini",
+                      "fontFamily": "Inter",
+                      "fontSize": 25,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "CVAAV",
+                      "name": "rItems",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 8,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pcMiT",
+                          "name": "ri1",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "✦ 综合性能领先，持续迭代优化",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "VAj2l",
+                          "name": "ri2",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "✦ API 开箱即用，零运维成本",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "iHiSN",
+                          "name": "ri3",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "✦ 企业级 SLA 与安全合规认证",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "fsUrY",
+                          "name": "ri4",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "✦ 多模态能力成熟，生态工具丰富",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "HPlIe",
+                          "name": "ri5",
+                          "fill": "$text-75",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "△ 数据传输依赖第三方，按量计费成本高",
+                          "lineHeight": 1.4,
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "8rcDS",
+          "name": "verdictBar",
+          "width": "fill_container",
+          "stroke": {
+            "thickness": {
+              "top": 1
+            },
+            "fill": "$border-light"
+          },
+          "padding": [
+            12,
+            0
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "xB1Ns",
+              "name": "verdictTxt",
+              "fill": "$text-55",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "选择建议：数据敏感型/高并发场景选开源；快速原型/综合能力场景选闭源；混合架构是最优解",
+              "textAlign": "center",
+              "fontFamily": "Inter",
+              "fontSize": 27,
+              "fontWeight": "normal",
+              "fontStyle": "italic"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "t48fX",
+      "x": 4040,
+      "y": 2360,
+      "name": "T11 FeaturedImage",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$bg",
+      "layout": "vertical",
+      "padding": [
+        50,
+        70
+      ],
+      "alignItems": "center",
+      "children": [
+        {
+          "type": "frame",
+          "id": "Xf7oF",
+          "name": "tagRow",
+          "gap": 16,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "hP8hk",
+              "name": "tagPill",
+              "fill": "$accent-15",
+              "cornerRadius": 16,
+              "padding": [
+                4,
+                14
+              ],
+              "children": [
+                {
+                  "type": "text",
+                  "id": "kJwve",
+                  "name": "tagText",
+                  "fill": "$accent",
+                  "content": "深度解析",
+                  "fontFamily": "Inter",
+                  "fontSize": 23,
+                  "fontWeight": "600"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "vcweN",
+              "name": "titleT11",
+              "fill": "$primary",
+              "content": "AI 芯片的算力竞赛",
+              "fontFamily": "Inter",
+              "fontSize": 61,
+              "fontWeight": "800"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "QahWa",
+          "name": "Hero Image",
+          "metadata": {
+            "type": "unsplash",
+            "username": "9andrewd",
+            "link": "https://unsplash.com/@9andrewd",
+            "author": "Andrew D"
+          },
+          "clip": true,
+          "width": 1638,
+          "height": "fill_container",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "https://images.unsplash.com/photo-1670751782084-dffc982dc63b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTIzMzF8&ixlib=rb-4.1.0&q=80&w=1080",
+            "mode": "fill"
+          },
+          "cornerRadius": 16,
+          "stroke": {
+            "thickness": 1,
+            "fill": "$border-light"
+          }
+        },
+        {
+          "type": "text",
+          "id": "naVY8",
+          "name": "captionT11",
+          "fill": "$text-55",
+          "textGrowth": "fixed-width",
+          "width": 900,
+          "content": "从 NVIDIA H100 到自研芯片，全球科技巨头正在掀起一场前所未有的算力军备竞赛。每一代芯片的性能飞跃，都在推动 AI 能力边界的扩展。",
+          "lineHeight": 1.5,
+          "textAlign": "center",
+          "fontFamily": "Inter",
+          "fontSize": 29,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "qLUU1",
+      "x": 6060,
+      "y": 2360,
+      "name": "T12 BannerCards",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "$bg",
+      "layout": "none",
+      "children": [
+        {
+          "type": "frame",
+          "id": "UsKoE",
+          "x": 0,
+          "y": 0,
+          "name": "Banner",
+          "metadata": {
+            "type": "unsplash",
+            "username": "charlottelane",
+            "link": "https://unsplash.com/@charlottelane",
+            "author": "Charlotte Lane"
+          },
+          "clip": true,
+          "width": 1920,
+          "height": 367,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "https://images.unsplash.com/photo-1654199664489-e37c6d7a4f6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzM2NTIzNTZ8&ixlib=rb-4.1.0&q=80&w=1080",
+            "mode": "fill"
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "rectangle",
+              "id": "wVlRv",
+              "x": 0,
+              "y": 0,
+              "name": "Gradient",
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 180,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#00000000",
+                    "position": 0.3
+                  },
+                  {
+                    "color": "$overlay-gradient-dark",
+                    "position": 1
+                  }
+                ]
+              },
+              "width": 1920,
+              "height": 367
+            },
+            {
+              "type": "text",
+              "id": "tFfNB",
+              "x": 56,
+              "y": 297,
+              "name": "Banner Title",
+              "fill": "$white",
+              "content": "2026 AI 市场全景",
+              "fontFamily": "Inter",
+              "fontSize": 55,
+              "fontWeight": "800"
+            },
+            {
+              "type": "text",
+              "id": "8HT5i",
+              "x": 56,
+              "y": 337,
+              "name": "Banner Subtitle",
+              "fill": "$white-60",
+              "content": "全球人工智能产业核心指标一览",
+              "fontFamily": "Inter",
+              "fontSize": 27,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "eQDXy",
+          "x": 44,
+          "y": 389,
+          "name": "Cards Row",
+          "width": 1832,
+          "height": 600,
+          "gap": 18,
+          "children": [
+            {
+              "type": "frame",
+              "id": "s5NRS",
+              "name": "card1",
+              "width": "fill_container",
+              "fill": "$bg",
+              "cornerRadius": 12,
+              "stroke": {
+                "thickness": 1,
+                "fill": "$border-light"
+              },
+              "layout": "vertical",
+              "padding": [
+                24,
+                22
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "zrr0p",
+                  "name": "c1header",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YBQxs",
+                      "name": "c1icon",
+                      "fill": "$text",
+                      "content": "💰",
+                      "fontFamily": "Inter",
+                      "fontSize": 38,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "5WcmV",
+                      "name": "c1trend",
+                      "fill": "$green",
+                      "content": "↑ 42%",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "lU8GT",
+                  "name": "c1val",
+                  "fill": "$primary",
+                  "content": "$1.8万亿",
+                  "fontFamily": "Inter",
+                  "fontSize": 43,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "ydiF2",
+                  "name": "c1title",
+                  "fill": "$text-75",
+                  "content": "全球市场规模",
+                  "fontFamily": "Inter",
+                  "fontSize": 27,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "PErEQ",
+                  "name": "c1desc",
+                  "fill": "$text-55",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "较 2025 年增长 42%，生成式 AI 占比首次突破 30%。北美市场占全球份额 38%，亚太地区增速领先达 51%",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Inter",
+                  "fontSize": 29,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "IXop0",
+              "name": "card2",
+              "width": "fill_container",
+              "fill": "$bg",
+              "cornerRadius": 12,
+              "stroke": {
+                "thickness": 1,
+                "fill": "$border-light"
+              },
+              "layout": "vertical",
+              "padding": [
+                24,
+                22
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "JmY2y",
+                  "name": "c2hdr",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zNvQb",
+                      "name": "c2icon",
+                      "fill": "$text",
+                      "content": "🚀",
+                      "fontFamily": "Inter",
+                      "fontSize": 38,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VEOOi",
+                      "name": "c2trend",
+                      "fill": "$green",
+                      "content": "+5.2pp",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "Bl8cH",
+                  "name": "c2val",
+                  "fill": "$primary",
+                  "content": "38.1%",
+                  "fontFamily": "Inter",
+                  "fontSize": 43,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "5rq6x",
+                  "name": "c2title",
+                  "fill": "$text-75",
+                  "content": "年复合增长率",
+                  "fontFamily": "Inter",
+                  "fontSize": 27,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "Guki6",
+                  "name": "c2desc",
+                  "fill": "$text-55",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "CAGR 连续三年加速，AI 基础设施与大模型训练投资是核心驱动力。预计 2028 年前维持 35% 以上高增长",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Inter",
+                  "fontSize": 29,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bbqwf",
+              "name": "card3",
+              "width": "fill_container",
+              "fill": "$bg",
+              "cornerRadius": 12,
+              "stroke": {
+                "thickness": 1,
+                "fill": "$border-light"
+              },
+              "layout": "vertical",
+              "padding": [
+                24,
+                22
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "gqh0T",
+                  "name": "c3hdr",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Yc7SZ",
+                      "name": "c3icon",
+                      "fill": "$text",
+                      "content": "🏢",
+                      "fontFamily": "Inter",
+                      "fontSize": 38,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "edfzC",
+                      "name": "c3trend",
+                      "fill": "$green",
+                      "content": "↑ 68家",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "MbQuV",
+                  "name": "c3val",
+                  "fill": "$primary",
+                  "content": "340+",
+                  "fontFamily": "Inter",
+                  "fontSize": 43,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "hrnRD",
+                  "name": "c3title",
+                  "fill": "$text-75",
+                  "content": "AI 独角兽企业",
+                  "fontFamily": "Inter",
+                  "fontSize": 27,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "H5JoG",
+                  "name": "c3desc",
+                  "fill": "$text-55",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "中美两国合计占比 78%，医疗 AI 赛道增速最快。企业级 AI SaaS 与 Agent 平台成为新一轮融资热点",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Inter",
+                  "fontSize": 29,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "nVx4U",
+              "name": "card4",
+              "width": "fill_container",
+              "fill": "$bg",
+              "cornerRadius": 12,
+              "stroke": {
+                "thickness": 1,
+                "fill": "$border-light"
+              },
+              "layout": "vertical",
+              "padding": [
+                24,
+                22
+              ],
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "VD2xH",
+                  "name": "c4hdr",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "P49KT",
+                      "name": "c4icon",
+                      "fill": "$text",
+                      "content": "👥",
+                      "fontFamily": "Inter",
+                      "fontSize": 38,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "GmvRM",
+                      "name": "c4trend",
+                      "fill": "$green",
+                      "content": "↑ 31%",
+                      "fontFamily": "Inter",
+                      "fontSize": 24,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "text",
+                  "id": "YGYgv",
+                  "name": "c4val",
+                  "fill": "$primary",
+                  "content": "2200万",
+                  "fontFamily": "Inter",
+                  "fontSize": 43,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "GzeHK",
+                  "name": "c4title",
+                  "fill": "$text-75",
+                  "content": "AI 从业者",
+                  "fontFamily": "Inter",
+                  "fontSize": 27,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "zPJWB",
+                  "name": "c4desc",
+                  "fill": "$text-55",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "全球 AI 人才缺口仍达 400 万，MLOps 与 AI 安全工程师需求增幅最大，薪资中位数同比上涨 22%",
+                  "lineHeight": 1.5,
+                  "fontFamily": "Inter",
+                  "fontSize": 29,
+                  "fontWeight": "normal"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "R6KXB",
+          "x": 56,
+          "y": 1056,
+          "name": "Footnote",
+          "fill": "$text-50",
+          "content": "数据来源：IDC Global AI Market Forecast 2026 · McKinsey Global AI Survey",
+          "fontFamily": "Inter",
+          "fontSize": 22,
+          "fontWeight": "normal"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ue1qI",
+      "x": 8080,
+      "y": 0,
+      "name": "T13 FullVideo",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#000000",
+      "children": [
+        {
+          "type": "frame",
+          "id": "MOVv9",
+          "name": "Video Placeholder",
+          "width": 1920,
+          "height": 1080,
+          "fill": "#1A1A1A",
+          "layout": "vertical",
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "YVIBk",
+              "name": "playIcon",
+              "width": 120,
+              "height": 120,
+              "fill": "#FFFFFF20",
+              "cornerRadius": 60,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "polygon",
+                  "polygonCount": 3,
+                  "id": "XPaqD",
+                  "name": "playTriangle",
+                  "rotation": -90,
+                  "fill": "#FFFFFF80",
+                  "width": 40,
+                  "height": 48
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "id": "EENJR",
+              "name": "label",
+              "fill": "#FFFFFF40",
+              "content": "Full-Screen Video",
+              "fontFamily": "Inter",
+              "fontSize": 28,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "accent": {
+      "type": "color",
+      "value": "#E17055"
+    },
+    "accent-06": {
+      "type": "color",
+      "value": "#E170550F"
+    },
+    "accent-10": {
+      "type": "color",
+      "value": "#E170551A"
+    },
+    "accent-15": {
+      "type": "color",
+      "value": "#E1705526"
+    },
+    "bar-track": {
+      "type": "color",
+      "value": "#0000000F"
+    },
+    "bg": {
+      "type": "color",
+      "value": "#FAFAFA"
+    },
+    "border-divider": {
+      "type": "color",
+      "value": "#0000000F"
+    },
+    "border-light": {
+      "type": "color",
+      "value": "#00000014"
+    },
+    "green": {
+      "type": "color",
+      "value": "#27AE60"
+    },
+    "overlay-dark": {
+      "type": "color",
+      "value": "#00000073"
+    },
+    "overlay-gradient-dark": {
+      "type": "color",
+      "value": "#000000A6"
+    },
+    "primary": {
+      "type": "color",
+      "value": "#2D3436"
+    },
+    "text": {
+      "type": "color",
+      "value": "#2D3436"
+    },
+    "text-50": {
+      "type": "color",
+      "value": "#2D343680"
+    },
+    "text-55": {
+      "type": "color",
+      "value": "#2D34368C"
+    },
+    "text-65": {
+      "type": "color",
+      "value": "#2D3436A6"
+    },
+    "text-75": {
+      "type": "color",
+      "value": "#2D3436BF"
+    },
+    "white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "white-60": {
+      "type": "color",
+      "value": "#FFFFFF99"
+    },
+    "white-88": {
+      "type": "color",
+      "value": "#FFFFFFE0"
+    }
+  }
+}

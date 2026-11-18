@@ -11,12 +11,8 @@
 import { Composition, Still } from "remotion";
 import { z } from "zod";
 import { Video } from "./Video";
-// import { Thumbnail } from "./Thumbnail";
+import { Thumbnail } from "./Thumbnail";
 import timing from "../../public/timing.json";
-import {
-  Demo_T01, Demo_T02, Demo_T03, Demo_T04, Demo_T05, Demo_T06,
-  Demo_T07, Demo_T08, Demo_T09, Demo_T10, Demo_T11, Demo_T12,
-} from "./section-templates";
 
 // 【可视化编辑】: Zod Schema 定义可编辑属性
 // Remotion Studio 会自动根据类型生成对应的编辑 UI
@@ -48,6 +44,10 @@ export const videoSchema = z.object({
 
   // 方向设置
   orientation: z.enum(["horizontal", "vertical"]).describe("视频方向: horizontal(16:9) / vertical(9:16)"),
+
+  // 图标设置
+  iconStyle: z.enum(["lucide", "emoji", "mixed"]).describe("图标风格: lucide(SVG图标) / emoji / mixed"),
+  iconAnimation: z.enum(["entrance", "none"]).describe("图标动画: entrance / none"),
 });
 
 // 类型导出，供 Video.tsx 使用
@@ -55,21 +55,20 @@ export type VideoProps = z.infer<typeof videoSchema>;
 
 // 【可视化编辑】: 默认值 - Studio 会显示这些作为初始值
 export const defaultVideoProps: VideoProps = {
-  // 颜色 - B站 pink + blue for Chen Rui video
-  primaryColor: "#FB7299",
-  backgroundColor: "#FFFFFF",
-  textColor: "#333333",
-  accentColor: "#00A1D6",
+  // 颜色 - OpenClaw purple/green tech palette
+  primaryColor: "#6C5CE7",
+  backgroundColor: "#ffffff",
+  textColor: "#2D3436",
+  accentColor: "#00B894",
 
   // 字体大小 (1080p design space, auto scale(2) to 4K)
-  // Reference: PluginComparison hero=72, Superpowers hero=120, section=80
   titleSize: 80,
   subtitleSize: 40,
   bodySize: 28,
 
   // 进度条 (minimal 4px line)
   showProgressBar: true,
-  progressColor: "#FB7299",
+  progressColor: "#6C5CE7",
 
   // 音频
   bgmVolume: 0.05,
@@ -83,6 +82,10 @@ export const defaultVideoProps: VideoProps = {
 
   // 方向
   orientation: "horizontal",
+
+  // 图标
+  iconStyle: "lucide",
+  iconAnimation: "entrance",
 };
 
 // 视频 ID
@@ -122,22 +125,32 @@ export const RemotionRoot = () => {
         }}
       />
 
-      {/* Thumbnails disabled - add Thumbnail.tsx first */}
+      {/* 16:9 缩略图 - B站/YouTube 封面 */}
+      <Still
+        id="Thumbnail16x9"
+        component={Thumbnail}
+        width={1920}
+        height={1080}
+        defaultProps={{ aspectRatio: "16:9" }}
+      />
 
-      {/* ── Section Template Showcase ── */}
-      {/* Render: npx remotion still src/remotion/index.ts T01_HeroSplit out.png --frame=60 */}
-      <Composition id="T01-HeroSplit" component={Demo_T01} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T02-PhotoOverlay" component={Demo_T02} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T03-ImageGrid" component={Demo_T03} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T04-QuotePortrait" component={Demo_T04} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T05-SplitDataViz" component={Demo_T05} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T06-TimelineMedia" component={Demo_T06} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T07-MagazineSpread" component={Demo_T07} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T08-StepByStep" component={Demo_T08} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T09-BigNumber" component={Demo_T09} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T10-DualCompare" component={Demo_T10} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T11-FeaturedImage" component={Demo_T11} durationInFrames={90} fps={30} width={3840} height={2160} />
-      <Composition id="T12-BannerCards" component={Demo_T12} durationInFrames={90} fps={30} width={3840} height={2160} />
+      {/* 4:3 缩略图 - B站推荐流/动态 */}
+      <Still
+        id="Thumbnail4x3"
+        component={Thumbnail}
+        width={1200}
+        height={900}
+        defaultProps={{ aspectRatio: "4:3" }}
+      />
+
+      {/* 9:16 缩略图 - 竖屏封面 */}
+      <Still
+        id="Thumbnail9x16"
+        component={Thumbnail}
+        width={1080}
+        height={1920}
+        defaultProps={{ aspectRatio: "9:16" }}
+      />
     </>
   );
 };
